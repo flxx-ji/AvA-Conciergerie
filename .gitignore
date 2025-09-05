@@ -1,0 +1,42 @@
+# --- Node ---
+node_modules/
+
+# --- SvelteKit / Vite : caches & builds ---
+.svelte-kit/          # build interne SvelteKit
+.vite/                # cache Vite (local)
+build/                # sorties de certains adapters
+dist/                 # sorties alternatives
+.output/              # sorties (ex. Nitro)
+.vercel/
+.netlify/
+.wrangler/
+
+# --- OS / Editeurs ---
+.DS_Store
+Thumbs.db
+.idea/                # IntelliJ / WebStorm
+# .vscode/            # <- décommente si je ne veux rien suivre dans .vscode
+# (souvent on garde .vscode/settings.json dans le repo pour partager la config)
+
+# --- Environnements (ne JAMAIS committer de secrets) ---
+.env
+.env.*
+!.env.example         # on garde un exemple vierge pour documenter les variables
+# !.env.test          # <- je te conseille de NE PAS versionner .env.test
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Tests (si je l'ajoute plus tard) ---
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# --- Vite timestamps (optionnels, pas gênant si je les garde) ---
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
