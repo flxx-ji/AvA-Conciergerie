@@ -1,25 +1,49 @@
+<!-- src/lib/components/CTAButtons.svelte -->
 <script>
   import { demo, contacts } from '$lib/config/app.js';
 
-  // HREFs calculés une fois
+  // Formats requis :
+  // - phoneRaw : +336XXXXXXXX (pas d’espace)
+  // - whatsapp : 336XXXXXXXX  (sans +)
   const telHref = `tel:${contacts.phoneRaw}`;
-  const waHref = `https://wa.me/${contacts.whatsapp}?text=${encodeURIComponent('Bonjour AvA, j’aimerais des infos 🙂')}`;
+  const waHref  = `https://wa.me/${contacts.whatsapp}?text=${encodeURIComponent('Bonjour, j’aimerais des infos 🙂')}`;
+
+  // mini tracking console (facultatif)
+  const track = (label) => console.log('[CTA]', label);
 </script>
 
 <div class="d-flex gap-2 flex-wrap">
-  <!-- CTA principal -->
-  <a href="/contact" class="btn btn-primary">Demander un devis</a>
+  <!-- Lien interne -->
+  <a href="/contact" class="btn btn-primary" on:click={() => track('ContactForm')}>
+    Demander un devis
+  </a>
 
-  <!-- Tel & WhatsApp : disabled visuellement en mode démo -->
+  <!-- Tel : VRAI lien tel: ; rel="external" pour éviter toute interception -->
+  <a
+    class="btn btn-outline-secondary"
+    href={telHref}
+    rel="external"
+    target="_self"
+    title={`Appeler ${contacts.phoneDisplay}`}
+    on:click={() => track('Call')}
+  >
+    Appeler {contacts.phoneDisplay}
+  </a>
+
+  <!-- WhatsApp : VRAI lien wa.me ; rel externe + target blank -->
+  <a
+    class="btn btn-outline-success"
+    href={waHref}
+    rel="noopener external"
+    target="_blank"
+    title="WhatsApp"
+    on:click={() => track('WhatsApp')}
+  >
+    WhatsApp
+  </a>
+
   {#if demo}
-    <button class="btn btn-outline-secondary" type="button" disabled title="Démo — inactif">
-      Appeler {contacts.phoneDisplay}
-    </button>
-    <button class="btn btn-outline-success" type="button" disabled title="Démo — inactif">
-      WhatsApp
-    </button>
-  {:else}
-    <a class="btn btn-outline-secondary" href={telHref}>Appeler {contacts.phoneDisplay}</a>
-    <a class="btn btn-outline-success" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
+    <!-- Badge visuel (juste informatif) -->
+    <span class="align-self-center text-body-secondary small">(mode démo activé)</span>
   {/if}
 </div>
