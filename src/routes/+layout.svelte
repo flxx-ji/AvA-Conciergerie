@@ -13,9 +13,8 @@
 </script>
 
 <svelte:head>
-  <!-- SEO de base, tu pourras personnaliser -->
-  <title>AvA Conciergerie</title>
-  <meta name="description" content="Conciergerie privée — services sur-mesure." />
+  <title>AvA Conciergerie — Conciergerie à Caen (Calvados)</title>
+  <meta name="description" content="Conciergerie privée à Caen et en Normandie : réservations, intendance, accueil VIP. Réponse sous 2h ouvrées." />
 </svelte:head>
 
 <!-- 

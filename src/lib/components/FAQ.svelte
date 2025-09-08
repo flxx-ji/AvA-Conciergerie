@@ -1,11 +1,12 @@
 <script>
+  // Contenu localisé Caen / Normandie
   const items = [
-    { q: 'Zones desservies ?',   a: 'Paris & petite couronne. Autres zones sur devis.' },
-    { q: 'Délais de réponse ?',  a: 'Première réponse sous 2h ouvrées.' },
-    { q: 'Urgences ?',           a: 'Oui, selon disponibilité du réseau (tarification spécifique).' },
-    { q: 'Types de services ?',  a: 'Accueil VIP, réservations, intendance, dépannage…' },
-    { q: 'Tarifs ?',             a: 'Au forfait ou à la mission selon la demande.' },
-    { q: 'Confidentialité ?',    a: 'NDA/accord de confidentialité possible.' }
+    { q: 'Zones desservies ?',  a: 'Caen, Hérouville-Saint-Clair, Mondeville, Ifs et le Calvados. Interventions en Normandie sur devis.' },
+    { q: 'Délais de réponse ?', a: 'Première réponse sous 2h ouvrées.' },
+    { q: 'Urgences ?',          a: 'Oui, selon disponibilité du réseau (tarification spécifique).' },
+    { q: 'Types de services ?', a: 'Accueil VIP, réservations, intendance, dépannage, logistique du quotidien.' },
+    { q: 'Tarifs ?',            a: 'Au forfait ou à la mission selon la demande.' },
+    { q: 'Confidentialité ?',   a: 'Accord de confidentialité (NDA) possible sur demande.' }
   ];
 </script>
 

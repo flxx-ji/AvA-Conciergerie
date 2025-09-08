@@ -1,10 +1,11 @@
 <script>
   const avis = [
-    { author: 'M. D., Paris 8e', text: 'Hyper réactifs et discrets. Le séjour de nos invités s’est déroulé sans accroc.' },
-    { author: 'S. L., Neuilly',  text: 'Réservation complexe gérée en 2h. Service impeccable.' },
-    { author: 'A. R., Boulogne', text: 'Communication fluide, réseau de prestataires sérieux.' }
+    { author: 'M. D., Caen Centre', text: 'Hyper réactifs et discrets. Organisation parfaite.' },
+    { author: 'S. L., Mondeville',  text: 'Réservation complexe gérée en 2h. Impeccable.' },
+    { author: 'A. R., Hérouville',  text: 'Communication fluide, prestataires sérieux.' }
   ];
 </script>
+
 
 <section class="container my-5">
   <h2 class="h4 mb-3">Avis clients</h2>

@@ -21,22 +21,19 @@
      “Hero” = grande intro en haut de page avec titre, sous-titre et CTA.
      Ici on remplace simplement tes 2 boutons par le composant CTA réutilisable.
 -->
+<!-- HERO (Caen / Normandie) -->
 <section class="bg-light border-bottom">
   <div class="container py-5">
     <div class="row align-items-center g-4">
       <div class="col-lg-7">
         <h1 class="display-5 fw-bold mb-3">
-          Concierge <span class="text-primary">sur-mesure</span> pour un quotidien fluide
+          Conciergerie <span class="text-primary">sur-mesure</span> à Caen (Calvados)
         </h1>
         <p class="lead mb-4">
-          Accueil VIP, réservations, intendance… AvA Conciergerie s’occupe de tout.
+          Réservations, intendance, accueil VIP… AvA Conciergerie opère à Caen et en Normandie.
         </p>
-
-        <!-- CTA réutilisable : /contact + (tel/WhatsApp en mode démo désactivés) -->
         <CTAButtons />
       </div>
-
-      <!-- Visuel à droite (placeholder pour l’instant) -->
       <div class="col-lg-5">
         <div class="ratio ratio-16x9 bg-white rounded shadow-sm d-flex align-items-center justify-content-center">
           <span class="text-muted">Image / vidéo de présentation</span>
