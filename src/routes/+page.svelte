@@ -1,15 +1,6 @@
-<!-- src/routes/+page.svelte
-     Page d'accueil (home). 
-     On garde ton hero + USP, puis on ajoute : Process 3 étapes, Partenaires, Avis, FAQ, et un CTA final.
--->
+<!-- src/routes/+page.svelte (version propre, sans doublons) -->
 <script>
-  // ⚠️ Ces composants viennent des fichiers que je t’ai donnés:
-  // - src/lib/components/CTAButtons.svelte
-  // - src/lib/components/Process3Steps.svelte
-  // - src/lib/components/Partners.svelte
-  // - src/lib/components/Testimonials.svelte
-  // - src/lib/components/FAQ.svelte
-  // Si tu ne les as pas encore créés, fais-le avant (copier/coller les snippets).
+  // On utilise les composants réutilisables pour éviter les répétitions
   import CTAButtons from '$lib/components/CTAButtons.svelte';
   import Process3Steps from '$lib/components/Process3Steps.svelte';
   import Partners from '$lib/components/Partners.svelte';
@@ -17,10 +8,6 @@
   import FAQ from '$lib/components/FAQ.svelte';
 </script>
 
-<!-- ===================== HERO =====================
-     “Hero” = grande intro en haut de page avec titre, sous-titre et CTA.
-     Ici on remplace simplement tes 2 boutons par le composant CTA réutilisable.
--->
 <!-- HERO (Caen / Normandie) -->
 <section class="bg-light border-bottom">
   <div class="container py-5">
@@ -43,9 +30,10 @@
   </div>
 </section>
 
-<!-- ===================== USP / POURQUOI NOUS CHOISIR =====================
-     Tu gardes ta section : 3 cartes simples, bootstrap.
--->
+<!-- Process (3 étapes) -->
+<Process3Steps />
+
+<!-- USP / Pourquoi nous choisir ? (ta section d’origine) -->
 <section class="container py-5">
   <h2 class="h4 mb-4">Pourquoi nous choisir ?</h2>
   <div class="row g-4">
@@ -76,29 +64,16 @@
   </div>
 </section>
 
-<!-- ===================== PROCESS (3 ÉTAPES) =====================
-     Objectif: rassurer en expliquant le parcours client simplement.
--->
-<Process3Steps />
-
-<!-- ===================== PARTENAIRES =====================
-     Logos/nom de partenaires (mock). Remplacer par de vrais logos quand tu veux.
--->
+<!-- Partenaires (placeholder texte pour l’instant) -->
 <Partners />
 
-<!-- ===================== AVIS CLIENTS =====================
-     3 avis courts (mock). Tu pourras brancher des vrais plus tard.
--->
+<!-- Avis -->
 <Testimonials />
 
-<!-- ===================== FAQ =====================
-     6 questions/réponses courtes pour lever les objections.
--->
+<!-- FAQ -->
 <FAQ />
 
-<!-- ===================== CTA FINAL =====================
-     On répète volontairement le CTA en bas de page pour convertir les lecteurs “scrollers”.
--->
+<!-- CTA de fin -->
 <section class="container my-5">
   <CTAButtons />
 </section>

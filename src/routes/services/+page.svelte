@@ -1,3 +1,13 @@
+<!-- src/routes/services/+page.svelte -->
+<script>
+  import CTAButtons from '$lib/components/CTAButtons.svelte';
+</script>
+
+<svelte:head>
+  <title>Services · AvA Conciergerie (Caen)</title>
+  <meta name="description" content="Services de conciergerie à Caen : accueil VIP, intendance, événementiel." />
+</svelte:head>
+
 <section class="container py-5">
   <h1 class="h3 mb-4">Nos services</h1>
 
@@ -28,5 +38,9 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="mt-5">
+    <CTAButtons />
   </div>
 </section>
