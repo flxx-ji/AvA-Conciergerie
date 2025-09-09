@@ -22,12 +22,40 @@
         <CTAButtons />
       </div>
       <div class="col-lg-5">
-        <div class="ratio ratio-16x9 bg-white rounded shadow-sm d-flex align-items-center justify-content-center">
-          <span class="text-muted">Image / vidéo de présentation</span>
-        </div>
-      </div>
-    </div>
+  <!--
+    Image responsive avec formats modernes.
+    Fichiers attendus :
+      /images/hero/caen-1280.webp
+      /images/hero/caen-800.webp
+      /images/hero/caen-1280.jpg  (fallback)
+    -> Place-les dans: static/images/hero/…
+  -->
+  <div class="ratio ratio-16x9 rounded shadow-sm overflow-hidden">
+    <picture>
+      <!-- Desktop d’abord (large) -->
+      <source
+        srcset="/images/hero/caen-1280.webp"
+        type="image/webp"
+        media="(min-width: 992px)"
+      />
+      <!-- Mobile (plus léger) -->
+      <source
+        srcset="/images/hero/caen-800.webp"
+        type="image/webp"
+        media="(max-width: 991px)"
+      />
+      <!-- Fallback JPG -->
+      <img
+        src="/images/hero/caen-1280.jpg"
+        alt="Église Saint-Pierre, Caen — AvA Conciergerie"
+        class="w-100 h-100 object-fit-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
+</div>
+
 </section>
 
 <!-- Process (3 étapes) -->

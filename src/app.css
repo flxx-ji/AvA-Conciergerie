@@ -1,3 +1,7 @@
  @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 :root { scroll-behavior: smooth; }
+.hover-raise { transition: transform .2s, box-shadow .2s; }
+.hover-raise:hover { transform: translateY(-2px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.08); }
+.logos img { filter: grayscale(1); opacity:.7; transition: .2s; }
+.logos img:hover { filter:none; opacity:1; }
