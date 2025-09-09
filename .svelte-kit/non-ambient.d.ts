@@ -39,6 +39,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/about" | "/about/" | "/contact" | "/contact/" | "/services" | "/services/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/images/hero/caen-1280.jpg" | "/images/hero/caen-1280.webp" | "/images/hero/caen-800.webp" | "/robots.txt" | string & {};
+		Asset(): "/images/hero/caen-1280.jpg" | "/images/hero/caen-1280.webp" | "/images/hero/caen-800.webp" | "/images/services/event-1200.webp" | "/images/services/event-1280.jpg" | "/images/services/event-800.webp" | "/images/services/intendance-1200.webp" | "/images/services/intendance-1280.jpg" | "/images/services/intendance-800.webp" | "/images/services/vip-1200.webp" | "/images/services/vip-1280.jpg" | "/images/services/vip-800.webp" | "/robots.txt" | string & {};
 	}
 }
