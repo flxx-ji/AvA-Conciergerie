@@ -17,7 +17,7 @@
   <meta name="description" content="Conciergerie privée à Caen et en Normandie : réservations, intendance, accueil VIP. Réponse sous 2h ouvrées." />
   
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <!-- SEO basique -->
   <title>AvA Conciergerie · Conciergerie privée à Caen (Calvados)</title>

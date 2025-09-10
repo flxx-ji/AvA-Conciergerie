@@ -16,7 +16,7 @@
       <div class="card h-100">
         <picture>
           <source type="image/webp"
-            srcset="/images/services/vip-800.webp 800w, /static/images/services/vip-1200.webp 1200w"
+            srcset="/images/services/vip-800.webp 800w, /images/services/vip-1200.webp 1200w"
             sizes="(max-width: 768px) 100vw, 33vw" />
           <img
             src="/images/services/vip-1200.webp"
@@ -36,7 +36,7 @@
       <div class="card h-100">
         <picture>
           <source type="image/webp"
-            srcset="/images/services/intendance-800.webp 800w, /static/images/services/intendance-1200.webp 1200w"
+            srcset="/images/services/intendance-800.webp 800w,/images/services/intendance-1200.webp 1200w"
             sizes="(max-width: 768px) 100vw, 33vw" />
           <img
             src="/images/services/intendance-1200.webp"
@@ -56,7 +56,7 @@
       <div class="card h-100">
         <picture>
           <source type="image/webp"
-            srcset="/images/services/event-800.webp 800w, /static/images/services/event-1200.webp 1200w"
+            srcset="/images/services/event-800.webp 800w, /images/services/event-1200.webp 1200w"
             sizes="(max-width: 768px) 100vw, 33vw" />
           <img
             src="/images/services/event-1200.webp"

@@ -1,0 +1,8 @@
+{
+	"/": [],
+	"/about": [],
+	"/contact": [
+		"src/routes/contact/+page.server.js"
+	],
+	"/services": []
+}

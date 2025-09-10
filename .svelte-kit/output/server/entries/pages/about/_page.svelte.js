@@ -1,0 +1,7 @@
+import "clsx";
+function _page($$payload) {
+  $$payload.out.push(`<section class="container py-5"><h1 class="h3 mb-3">À propos</h1> <p class="mb-4">AvA Conciergerie accompagne particuliers et entreprises avec un service discret et réactif.</p> <div class="row g-4"><div class="col-md-6"><div class="border rounded p-3 h-100"><h2 class="h6">Notre mission</h2> <p class="mb-0">Libérer ton temps en gérant l’intendance avec exigence et bienveillance.</p></div></div> <div class="col-md-6"><div class="border rounded p-3 h-100"><h2 class="h6">Nos valeurs</h2> <ul class="mb-0"><li>Discrétion</li> <li>Proactivité</li> <li>Qualité</li></ul></div></div></div></section>`);
+}
+export {
+  _page as default
+};
