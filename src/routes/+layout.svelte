@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores'; // pour savoir sur quelle route on est (lien actif)
+  import 'bootstrap/dist/css/bootstrap.min.css';
+  import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
   // 👉 CSS global (chargé côté serveur et client)
   import 'bootstrap/dist/css/bootstrap.min.css';
