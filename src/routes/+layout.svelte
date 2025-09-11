@@ -1,14 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores'; // pour savoir sur quelle route on est (lien actif)
-  import 'bootstrap/dist/css/bootstrap.min.css';
-  import 'bootstrap-icons/font/bootstrap-icons.css';
-
-
-  // 👉 CSS global (chargé côté serveur et client)
-  import 'bootstrap/dist/css/bootstrap.min.css';
-  import 'bootstrap-icons/font/bootstrap-icons.css';
-
+  import '../app.css';
+   
   // 👉 JS Bootstrap (uniquement côté client, sinon "window is not defined")
   onMount(async () => {
     await import('bootstrap/dist/js/bootstrap.bundle.min.js'); // bundle = Bootstrap + Popper
