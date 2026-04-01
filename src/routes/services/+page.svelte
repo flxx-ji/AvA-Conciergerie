@@ -1,5 +1,7 @@
 <script>
   import CTAButtons from '$lib/components/CTAButtons.svelte';
+   import HeroSection from '$lib/components/home/HeroSection.svelte';
+  import BenefitsSection from '$lib/components/home/BenefitsSection.svelte';
 
   // On importe les images depuis src/lib/assets
   import vip1200 from '$lib/assets/services/vip-1200.webp';
@@ -14,6 +16,13 @@
   import event800 from '$lib/assets/services/event-800.webp';
   import event1280 from '$lib/assets/services/event-1280.jpg';
 </script>
+<HeroSection />
+<BenefitsSection />
+<svelte:head>
+  <title>Services  .  AvA Conciergerie </title>
+  <meta name = "description" content="Conciergerie à Caen : accueil VIP, intendance , événementiel."/>
+</svelte:head>
+
 
 <section class="container py-5">
   <h1 class="h3 mb-4">Nos services</h1>

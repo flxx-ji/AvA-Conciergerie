@@ -1,7 +1,8 @@
 <script>
+  import '../app.css';
   import { onMount } from 'svelte';
   import { page } from '$app/stores'; // pour savoir sur quelle route on est (lien actif)
-  import '../app.css';
+ 
    
   // 👉 JS Bootstrap (uniquement côté client, sinon "window is not defined")
   onMount(async () => {
