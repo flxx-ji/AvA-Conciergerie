@@ -21,7 +21,7 @@
         Demander un devis
       </a>
 
-      <a href="https://wa.me/33766665848" target="_blank" class="btn-secondary">
+      <a href="https://wa.me/+33777324144" target="_blank" class="btn-secondary">
         WhatsApp
       </a>
     </div>
@@ -37,7 +37,7 @@
   <div class="grid">
 
     <img src="/images/montstmichel.jpg" alt="Mont Saint Michel" />
-    <img src="/images/deauville.jpg" alt="Deauville" />
+    <img src="/images/deauvilleplage.jpg" alt="Deauville" />
     <img src="/images/cotenormande.jpg" alt="Côte Normande" />
     <img src="/images/maisonscolombages.jpg" alt="Maisons normandes" />
 
@@ -48,7 +48,7 @@
 /* 🔥 HERO plein écran */
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 
   background-image: url('/images/cotenormande.jpg');
   background-size: cover;
@@ -146,11 +146,14 @@
   color: black;
 }
 
-
+.btn-primary:hover,
+.btn-secondary:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
 
 .patchwork {
   position: relative;
-  padding: 100px 20px;
+  padding: 120px 20px;
   overflow: hidden;
   background: #f8f8f8;
 }
@@ -158,15 +161,39 @@
 /* 🔥 AVA en fond */
 .background-text {
   position: absolute;
-  font-size: 18vw; /* responsive auto */
+  font-size: 60vw;
   font-weight: 900;
-  color: rgba(0, 0, 0, 0.05);
+  letter-spacing: 10px;
+
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.015),
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.015)
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   user-select: none;
   pointer-events: none;
+  z-index: 1;
+
+  .patchwork::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  z-index: 0;
 }
+}
+
+
+
 
 /* 🔥 GRID */
 .grid {

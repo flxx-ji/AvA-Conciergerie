@@ -14,8 +14,8 @@ export const demo = true;
 
 
 export const contacts = {
-  phoneDisplay: '+33 7 66 66 58 48',
-  phoneRaw: '+33766665848',               
-  whatsapp: '33766665848',               
+  phoneDisplay: '+33777324144',
+                
+  whatsapp: '+33777324144',               
   email: 'contact@jayhembeestudio.com'  
 };

@@ -1,84 +1,189 @@
 <script>
   import CTAButtons from '$lib/components/CTAButtons.svelte';
-   import HeroSection from '$lib/components/home/HeroSection.svelte';
-  import BenefitsSection from '$lib/components/home/BenefitsSection.svelte';
-
-  // On importe les images depuis src/lib/assets
-  import vip1200 from '$lib/assets/services/vip-1200.webp';
-  import vip800 from '$lib/assets/services/vip-800.webp';
-  import vip1280 from '$lib/assets/services/vip-1280.jpg';
-
-  import intendance1200 from '$lib/assets/services/intendance-1200.webp';
-  import intendance800 from '$lib/assets/services/intendance-800.webp';
-  import intendance1280 from '$lib/assets/services/intendance-1280.jpg';
-
-  import event1200 from '$lib/assets/services/event-1200.webp';
-  import event800 from '$lib/assets/services/event-800.webp';
-  import event1280 from '$lib/assets/services/event-1280.jpg';
 </script>
-<HeroSection />
-<BenefitsSection />
-<svelte:head>
-  <title>Services  .  AvA Conciergerie </title>
-  <meta name = "description" content="Conciergerie à Caen : accueil VIP, intendance , événementiel."/>
-</svelte:head>
 
+<section class="services">
 
-<section class="container py-5">
-  <h1 class="h3 mb-4">Nos services</h1>
+  <!-- 🔥 TITRE -->
+  <h1>
+    Nos services de conciergerie Airbnb
+  </h1>
 
-  <div class="row g-4">
-    <!-- Accueil VIP -->
-    <div class="col-md-4">
-      <div class="card h-100">
-        <picture>
-          <source type="image/webp" srcset={`${vip1200} 1200w, ${vip800} 800w`} sizes="(max-width: 768px) 100vw, 33vw" />
-          <img src={vip1280} class="card-img-top" loading="lazy" decoding="async"
-            alt="Accueil VIP : transferts, check-in, réservations personnalisées" />
-        </picture>
-        <div class="card-body">
-          <h2 class="h5">Accueil VIP</h2>
-          <p class="mb-0">Transferts, check-in, réservations personnalisées.</p>
-        </div>
-      </div>
+  <p class="intro">
+    Une gestion complète de votre logement à Caen et ses alentours.
+  </p>
+
+  <!-- 🔥 CARDS -->
+  <div class="cards">
+
+    <div class="card">
+      <h2>Gestion complète</h2>
+      <p>
+        Création, optimisation et gestion de votre annonce Airbnb de A à Z.
+      </p>
     </div>
 
-    <!-- Intendance -->
-    <div class="col-md-4">
-      <div class="card h-100">
-        <picture>
-          <source type="image/webp" srcset={`${intendance1200} 1200w, ${intendance800} 800w`} sizes="(max-width: 768px) 100vw, 33vw" />
-          <img src={intendance1280} class="card-img-top" loading="lazy" decoding="async"
-            alt="Intendance : linge, ménage, pressing, maintenance" />
-        </picture>
-        <div class="card-body">
-          <h2 class="h5">Intendance</h2>
-          <p class="mb-0">Courses, ménage, pressing, maintenance.</p>
-        </div>
-      </div>
+    <div class="card">
+      <h2>Communication voyageurs</h2>
+      <p>
+        Réponse rapide aux voyageurs et assistance pendant leur séjour.
+      </p>
     </div>
 
-    <!-- Événementiel -->
-    <div class="col-md-4">
-      <div class="card h-100">
-        <picture>
-          <source type="image/webp" srcset={`${event1200} 1200w, ${event800} 800w`} sizes="(max-width: 768px) 100vw, 33vw" />
-          <img src={event1280} class="card-img-top" loading="lazy" decoding="async"
-            alt="Événementiel : organisation clé en main, invitations, logistique" />
-        </picture>
-        <div class="card-body">
-          <h2 class="h5">Événementiel</h2>
-          <p class="mb-0">Organisation clé en main, invitations, logistique.</p>
-        </div>
-      </div>
+    <div class="card">
+      <h2>Ménage professionnel</h2>
+      <p>
+        Nettoyage complet entre chaque réservation pour une expérience optimale.
+      </p>
     </div>
+
+    <div class="card">
+      <h2>Optimisation des revenus</h2>
+      <p>
+        Ajustement des prix pour maximiser votre rentabilité.
+      </p>
+    </div>
+
   </div>
 
-  <div class="mt-5">
+
+
+   <!-- fin des cards -->
+
+<!-- 🔥 PHRASE QUI VEND -->
+<p class="trust">
+  Gagnez du temps, augmentez vos revenus, on s’occupe de tout.
+</p>
+
+
+  <!-- 💰 PRICING -->
+  <div class="pricing">
+    <p>À partir de</p>
+    <h2>20%</h2>
+    <p class="small">de commission sur vos revenus</p>
+  </div>
+
+  <!-- 🔥 CTA -->
+  <div class="cta">
     <CTAButtons />
   </div>
+
 </section>
 
 <style>
-  .card-img-top { aspect-ratio: 3 / 2; object-fit: cover; }
+
+/* 🔥 SECTION */
+.services {
+  padding: 100px 20px;
+  text-align: center;
+  background: #fafafa;
+}
+
+/* 🔥 TITRE */
+.services h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* 🔥 INTRO */
+.intro {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  margin-bottom: 50px;
+}
+
+/* 🔥 GRID */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+   margin-top: 40px;
+}
+
+/* 🔥 CARD */
+.card {
+  padding: 30px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  border: none;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+/* ✨ HOVER PREMIUM */
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 TITRE CARD */
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* 🔥 TEXTE */
+.card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* 🔥 PHRASE TRUST */
+.trust {
+  margin-top: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 💰 PRICING */
+.pricing {
+  margin: 50px auto;
+  padding: 30px;
+  max-width: 400px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.pricing h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #0d6efd; /* couleur principale */
+  letter-spacing: -1px;
+}
+
+/* petit texte */
+.small {
+  opacity: 0.6;
+}
+
+/* 🔥 CTA */
+.cta {
+  margin-top: 40px;
+}
+
+:global(.cta a) {
+  font-size: 1.1rem;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .services h1 {
+    font-size: 2rem;
+  }
+
+  .pricing h2 {
+    font-size: 2.8rem;
+  }
+}
 </style>

@@ -1,5 +1,10 @@
 
 import { fail } from '@sveltejs/kit';
+import { Resend } from 'resend';
+
+
+// 👉 on initialise resend avec ta clé
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
  * Actions = handlers des <form method="POST"> de *cette* page.
@@ -50,9 +55,29 @@ export const actions = {
     //   if (!ok) return fail(500, { error, values: { name, email, message } });
 
     // Pour l’instant : log serveur pour vérifier la réception.
-    console.log('[contact] received', { name, email, message });
+    try {
+  await resend.emails.send({
+    from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
+    to: 'contact@avaconciergerie.fr',
+    subject: `Nouveau message de ${name}`,
+    html: `
+      <h2>Nouveau message</h2>
+      <p><strong>Nom :</strong> ${name}</p>
+      <p><strong>Email :</strong> ${email}</p>
+      <p><strong>Message :</strong></p>
+      <p>${message}</p>
+    `
+  });
 
-    // -- Succès : la page peut afficher un message via `form?.success`
-    return { success: true };
+  return { success: true };
+
+} catch (error) {
+  console.error(error);
+
+  return fail(500, {
+    error: "Erreur lors de l'envoi du message.",
+    values: { name, email, message }
+  });
+}
   }
 };

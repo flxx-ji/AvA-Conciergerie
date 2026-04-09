@@ -2,7 +2,7 @@
   import '../app.css';
   import { onMount } from 'svelte';
   import { page } from '$app/stores'; // pour savoir sur quelle route on est (lien actif)
- 
+  import 'bootstrap/dist/css/bootstrap.min.css';
    
   // 👉 JS Bootstrap (uniquement côté client, sinon "window is not defined")
   onMount(async () => {
@@ -91,7 +91,7 @@
   <div class="container d-flex gap-2">
     <a href="/contact" class="btn btn-primary w-100">Devis</a>
     <a href="tel:+33766665848" class="btn btn-outline-secondary w-100">Appeler</a>
-    <a href="https://wa.me/33766665848" target="_blank" rel="noopener" class="btn btn-success w-100">WhatsApp</a>
+    <a href="https://wa.me/33777324144" target="_blank" rel="noopener" class="btn btn-success w-100">WhatsApp</a>
   </div>
 </div>
 
