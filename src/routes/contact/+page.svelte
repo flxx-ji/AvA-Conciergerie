@@ -1,8 +1,22 @@
 <script>
   import { enhance } from '$app/forms';
-  export let form;
-</script>
+  import { writable } from 'svelte/store';
 
+  export let form;
+
+  const loading = writable(false);
+
+  function handleEnhance(formElement) {
+    return enhance(formElement, () => {
+      loading.set(true);
+
+      return async ({ update }) => {
+        await update();
+        loading.set(false);
+      };
+    });
+  }
+</script>
 <section class="contact">
 
   <!-- 🔥 HERO -->
@@ -30,40 +44,59 @@
 
   </div>
 
-  <!-- 🔥 FORM PREMIUM -->
-  <form method="POST" use:enhance class="contact-form">
+  <!-- 🔥 FORM -->
+  <form method="POST" use:handleEnhance class="contact-form">
 
     <div class="grid">
       <div class="field">
-        <label>Nom</label>
+        <label for="name">Nom</label>
         <input
+          id="name"
           name="name"
+          placeholder="Votre nom"
           required
           value={form?.values?.name ?? ''} />
       </div>
 
       <div class="field">
-        <label>Email</label>
+        <label for="email">Email</label>
         <input
+          id="email"
           type="email"
           name="email"
+          placeholder="Votre email"
           required
           value={form?.values?.email ?? ''} />
       </div>
     </div>
 
     <div class="field">
-      <label>Votre besoin</label>
+      <label for="message">Décrivez votre besoin</label>
       <textarea
+        id="message"
         name="message"
         rows="5"
+        placeholder="Expliquez votre besoin..."
         required>{form?.values?.message ?? ''}</textarea>
     </div>
 
-    <input type="text" name="website" class="hidden" />
+    <!-- 🔥 HONEYPOT -->
+    <div class="honeypot" aria-hidden="true">
+      <label for="website">Ne pas remplir</label>
+      <input
+        id="website"
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off" />
+    </div>
 
-    <button type="submit">
-      Demander un devis
+    <button type="submit" disabled={$loading}>
+      {#if $loading}
+        Envoi en cours...
+      {:else}
+        Demander un devis
+      {/if}
     </button>
 
     {#if form?.error}
@@ -71,7 +104,9 @@
     {/if}
 
     {#if form?.success}
-      <p class="success">Merci ! On te répond très vite.</p>
+      <p class="success">
+        ✅ Votre message a bien été envoyé. Nous vous répondons rapidement.
+      </p>
     {/if}
 
   </form>
@@ -125,7 +160,6 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
-
   transition: 0.3s;
 }
 
@@ -190,7 +224,8 @@ input, textarea {
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: black;
+  border-color: #041D80;
+  box-shadow: 0 0 0 2px rgba(4, 29, 128, 0.1);
 }
 
 /* 🔥 BOUTON */
@@ -202,12 +237,22 @@ button {
   border: none;
   font-weight: 600;
   cursor: pointer;
-
   transition: 0.3s;
 }
 
 button:hover {
   transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 🔥 HONEYPOT */
+.honeypot {
+  position: absolute;
+  left: -9999px;
 }
 
 /* 🔥 TRUST */
@@ -232,6 +277,7 @@ button:hover {
 
 .success {
   color: green;
+  font-weight: 500;
 }
 
 /* 📱 MOBILE */
