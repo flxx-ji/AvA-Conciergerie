@@ -4,68 +4,61 @@
 
 <section class="services">
 
-  <!-- 🔥 TITRE -->
-  <h1>
-    Nos services de conciergerie Airbnb
-  </h1>
+  <div class="container">
 
-  <p class="intro">
-    Une gestion complète de votre logement à Caen et ses alentours.
-  </p>
-
-  <!-- 🔥 CARDS -->
-  <div class="cards">
-
-    <div class="card">
-      <h2>Gestion complète</h2>
-      <p>
-        Création, optimisation et gestion de votre annonce Airbnb de A à Z.
-      </p>
+    <!-- 🔥 IMAGE -->
+    <div class="image">
+      <img src="/images/apartments-living-room.jpg" alt="Salon Airbnb moderne" />
     </div>
 
-    <div class="card">
-      <h2>Communication voyageurs</h2>
-      <p>
-        Réponse rapide aux voyageurs et assistance pendant leur séjour.
+    <!-- 🔥 TEXTE -->
+    <div class="content">
+
+      <h1>
+        Nos services de <span>conciergerie Airbnb</span>
+      </h1>
+
+      <p class="intro">
+        Une gestion complète de votre logement à Caen et ses alentours.
       </p>
+
+      <!-- 🔥 BLOC 1 -->
+      <div class="bloc">
+        <h3>Gestion des réservations et des voyageurs</h3>
+        <ul>
+          <li>Communication rapide avec vos locataires</li>
+          <li>Check-in et check-out fluides</li>
+          <li>Gestion des imprévus</li>
+        </ul>
+      </div>
+
+      <!-- 🔥 BLOC 2 -->
+      <div class="bloc">
+        <h3>Entretien et maintenance</h3>
+        <ul>
+          <li>Ménage professionnel après chaque séjour</li>
+          <li>Organisation des réparations</li>
+          <li>Contrôle qualité du logement</li>
+        </ul>
+      </div>
+
+      <!-- 🔥 BLOC 3 -->
+      <div class="bloc">
+        <h3>Optimisation des revenus</h3>
+        <ul>
+          <li>Analyse du marché local</li>
+          <li>Ajustement dynamique des prix</li>
+          <li>Maximisation du taux d’occupation</li>
+        </ul>
+      </div>
+
+      <!-- 🔥 CTA -->
+      <div class="cta">
+        <CTAButtons />
+      </div>
+
     </div>
 
-    <div class="card">
-      <h2>Ménage professionnel</h2>
-      <p>
-        Nettoyage complet entre chaque réservation pour une expérience optimale.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>Optimisation des revenus</h2>
-      <p>
-        Ajustement des prix pour maximiser votre rentabilité.
-      </p>
-    </div>
-
-  </div>
-
-
-
-   <!-- fin des cards -->
-
-<!-- 🔥 PHRASE QUI VEND -->
-<p class="trust">
-  Gagnez du temps, augmentez vos revenus, on s’occupe de tout.
-</p>
-
-
-  <!-- 💰 PRICING -->
-  <div class="pricing">
-    <p>À partir de</p>
-    <h2>20%</h2>
-    <p class="small">de commission sur vos revenus</p>
-  </div>
-
-  <!-- 🔥 CTA -->
-  <div class="cta">
-    <CTAButtons />
   </div>
 
 </section>
@@ -75,115 +68,98 @@
 /* 🔥 SECTION */
 .services {
   padding: 100px 20px;
-  text-align: center;
   background: #fafafa;
 }
 
-/* 🔥 TITRE */
-.services h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-/* 🔥 INTRO */
-.intro {
-  font-size: 1.1rem;
-  opacity: 0.7;
-  margin-bottom: 50px;
-}
-
-/* 🔥 GRID */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 900px;
+/* 🔥 LAYOUT */
+.container {
+  max-width: 1200px;
   margin: auto;
-   margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
-/* 🔥 CARD */
-.card {
-  padding: 30px;
-  border-radius: 16px;
-  background: white;
-  border: 1px solid rgba(0,0,0,0.05);
-  border: none;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-/* ✨ HOVER PREMIUM */
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-/* 🔥 TITRE CARD */
-.card h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
+/* 🔥 IMAGE */
+.image img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 /* 🔥 TEXTE */
-.card p {
-  color: #666;
-  font-size: 0.95rem;
+.content h1 {
+  font-size: 2.8rem;
+  font-weight:  800;
+  line-height: 1.2;
+  margin-bottom: 15px;
 }
 
-/* 🔥 PHRASE TRUST */
-.trust {
-  margin-top: 50px;
+.content h1 span {
+  color: #0d6efd;
+  display: block;
+}
+
+.intro {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+/* 🔥 BLOCS */
+.bloc {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.bloc h3 {
   font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
+  margin-bottom: 10px;
 }
 
-/* 💰 PRICING */
-.pricing {
-  margin: 50px auto;
-  padding: 30px;
-  max-width: 400px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.bloc:hover {
+  background: rgba(0,0,0,0.03);
 }
 
-.pricing h2 {
-  font-size: 4rem;
-  font-weight: 700;
-  color: #0d6efd; /* couleur principale */
-  letter-spacing: -1px;
+/* 🔥 LISTE */
+.bloc ul {
+  list-style: none;
+  padding: 0;
 }
 
-/* petit texte */
-.small {
-  opacity: 0.6;
+.bloc li {
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* ✔ check */
+.bloc li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #0d6efd;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 /* 🔥 CTA */
 .cta {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
-:global(.cta a) {
-  font-size: 1.1rem;
-}
-
-/* 📱 MOBILE */
+/* 📱 RESPONSIVE */
 @media (max-width: 768px) {
-  .cards {
+  .container {
     grid-template-columns: 1fr;
   }
 
-  .services h1 {
+  .content h1 {
     font-size: 2rem;
   }
-
-  .pricing h2 {
-    font-size: 2.8rem;
-  }
 }
+
 </style>

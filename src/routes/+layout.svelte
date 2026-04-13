@@ -103,6 +103,10 @@
         <a class="text-muted" href="https://www.instagram.com/" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
         <a class="text-muted" href="https://fr-fr.facebook.com/" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
         <a class="text-muted" href="https://x.com/" aria-label="X"><i class="bi bi-twitter-x fs-5"></i></a>
+        <a class="text-muted" href="https://wa.me/33777324144" target="_blank" aria-label="WhatsApp"
+>
+  <i class="bi bi-whatsapp fs-5"></i>
+</a>
       </div>
     </div>
   </footer>

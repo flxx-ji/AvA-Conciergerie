@@ -42,8 +42,5 @@
     WhatsApp
   </a>
 
-  {#if demo}
-    <!-- Badge visuel (juste informatif) -->
-    <span class="align-self-center text-body-secondary small">(mode démo activé)</span>
-  {/if}
+  
 </div>

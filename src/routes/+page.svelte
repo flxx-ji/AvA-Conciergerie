@@ -1,20 +1,28 @@
 <section class="hero">
-  <!-- 🔥 Overlay sombre + dégradé -->
+  <!-- 🔥 Overlay sombre -->
   <div class="overlay"></div>
 
   <!-- 🔥 Contenu -->
   <div class="content">
     <h1>
-      Confiez-nous votre bien
+      Confiez votre bien,<br />
+      on s’occupe de tout
     </h1>
 
     <p class="subtitle">
-      Nous nous occupons du reste
+      Vous gagnez du temps, on optimise vos revenus
     </p>
 
     <p class="location">
-      Gestion de location courte durée en Normandie
+      Conciergerie Airbnb à Caen et en Normandie
     </p>
+
+    <!-- 🔥 RASSURANCE -->
+    <div class="badges">
+      <span>✔ Réponse rapide</span>
+      <span>✔ Service personnalisé</span>
+      <span>✔ Intervention locale</span>
+    </div>
 
     <div class="buttons">
       <a href="/contact" class="btn-primary">
@@ -26,26 +34,47 @@
       </a>
     </div>
   </div>
+
+  <!-- 🔥 Scroll hint -->
+  <div class="scroll-indicator">↓</div>
 </section>
 
+<!-- 🔥 PATCHWORK -->
 <section class="patchwork">
 
-  <!-- 🔥 Texte géant en fond -->
+  <!-- texte fond -->
   <div class="background-text">AVA</div>
 
-  <!-- 🔥 Grid images -->
+  <!-- grid images -->
   <div class="grid">
 
+  <div class="card">
     <img src="/images/montstmichel.jpg" alt="Mont Saint Michel" />
-    <img src="/images/deauvilleplage.jpg" alt="Deauville" />
-    <img src="/images/cotenormande.jpg" alt="Côte Normande" />
-    <img src="/images/maisonscolombages.jpg" alt="Maisons normandes" />
-
+    <span>Mont-Saint-Michel</span>
   </div>
 
+  <div class="card">
+    <img src="/images/deauvilleplage.jpg" alt="Deauville" />
+    <span>Deauville</span>
+  </div>
+
+  <div class="card">
+    <img src="/images/cotenormande.jpg" alt="Côte Normande" />
+    <span>Côte Normande</span>
+  </div>
+
+  <div class="card">
+    <img src="/images/maisonscolombages.jpg" alt="Maisons normandes" />
+    <span>Architecture Normande</span>
+  </div>
+
+</div>
+
 </section>
+
 <style>
-/* 🔥 HERO plein écran */
+
+/* 🔥 HERO */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -59,7 +88,7 @@
   justify-content: center;
 }
 
-/* 🔥 overlay premium */
+/* 🔥 overlay */
 .overlay {
   position: absolute;
   inset: 0;
@@ -87,11 +116,10 @@
   font-size: 3.2rem;
   font-weight: 700;
   line-height: 1.2;
-
   text-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 
-/* 🔥 sous-titre */
+/* 🔥 sous titre */
 .subtitle {
   font-size: 1.6rem;
   margin: 20px 0 10px;
@@ -102,7 +130,24 @@
 .location {
   font-size: 1rem;
   opacity: 0.85;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+/* 🔥 badges */
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.badges span {
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
 }
 
 /* 🔥 boutons */
@@ -113,7 +158,6 @@
   flex-wrap: wrap;
 }
 
-/* bouton principal */
 .btn-primary {
   background: white;
   color: black;
@@ -121,7 +165,6 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-
   transition: all 0.3s ease;
 }
 
@@ -129,7 +172,6 @@
   transform: translateY(-3px);
 }
 
-/* bouton secondaire */
 .btn-secondary {
   border: 1px solid white;
   color: white;
@@ -137,7 +179,6 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 500;
-
   transition: all 0.3s ease;
 }
 
@@ -151,6 +192,17 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+/* 🔥 scroll hint */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+}
+
+/* 🔥 PATCHWORK */
 .patchwork {
   position: relative;
   padding: 120px 20px;
@@ -158,7 +210,16 @@
   background: #f8f8f8;
 }
 
-/* 🔥 AVA en fond */
+/* overlay blanc */
+.patchwork::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  z-index: 0;
+}
+
+/* texte fond */
 .background-text {
   position: absolute;
   font-size: 60vw;
@@ -182,20 +243,9 @@
   user-select: none;
   pointer-events: none;
   z-index: 1;
-
-  .patchwork::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.6);
-  z-index: 0;
-}
 }
 
-
-
-
-/* 🔥 GRID */
+/* grid */
 .grid {
   position: relative;
   display: grid;
@@ -206,7 +256,6 @@
   z-index: 2;
 }
 
-/* 🔥 images */
 .grid img {
   width: 100%;
   height: 250px;
@@ -215,13 +264,27 @@
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* 🔥 effet hover (pro) */
 .grid img:hover {
   transform: scale(1.05);
   filter: brightness(1.1);
 }
 
+/* 🔥 animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
 
 /* 📱 responsive */
 @media (max-width: 768px) {
@@ -236,22 +299,7 @@
   .location {
     font-size: 0.9rem;
   }
-}
 
-/* 🔥 animation */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -265,4 +313,65 @@
   }
 }
 
+
+/*Patchwork*/
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+/* 🔥 overlay gris */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6); /* 🔥 plus sombre */
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+/* 🔥 texte */
+.card span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: white;
+  font-weight: 700; /* 🔥 plus impact */
+  font-size: 1.6rem; /* 🔥 plus lisible */
+  text-align: center;
+
+  padding: 10px 20px;
+  border-radius: 30px;
+
+  opacity: 0;
+  transition: 0.3s ease;
+
+  /* 🔥 lisibilité MAX */
+  text-shadow: 0 4px 20px rgba(0,0,0,0.9),
+               0 2px 10px rgba(0,0,0,0.6);
+}
+/* 🔥 hover */
+.card:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover span {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
