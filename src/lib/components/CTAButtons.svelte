@@ -1,10 +1,7 @@
 <!-- src/lib/components/CTAButtons.svelte -->
 <script>
-  import { demo, contacts } from '$lib/config/app.js';
-
-  // Formats requis :
-  // - phoneRaw : +336XXXXXXXX (pas d’espace)
-  // - whatsapp : 336XXXXXXXX  (sans +)
+  import { contacts } from '$lib/config/app.js';
+ 
   const telHref = `tel:${contacts.phoneRaw}`;
   const waHref  = `https://wa.me/${contacts.whatsapp}?text=${encodeURIComponent('Bonjour, j’aimerais des infos 🙂')}`;
 

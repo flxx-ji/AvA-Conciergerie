@@ -1,10 +1,14 @@
 <script>
   import { enhance } from '$app/forms';
   import { writable } from 'svelte/store';
+  import { contacts } from '$lib/config/app.js';
 
   export let form;
 
   const loading = writable(false);
+
+  const telHref = `tel:${contacts.phoneRaw}`;
+  const waHref = `https://wa.me/${contacts.whatsapp}?text=Bonjour,%20je%20souhaite%20un%20devis`;
 
   function handleEnhance(formElement) {
     return enhance(formElement, () => {
@@ -17,31 +21,59 @@
     });
   }
 </script>
+
 <section class="contact">
 
   <!-- 🔥 HERO -->
   <div class="hero-contact">
     <h1>Parlons de votre bien</h1>
     <p>
-      Une gestion simple, efficace et rentable.
+      Confiez-nous votre logement et maximisez vos revenus sans effort.
     </p>
+  </div>
+
+  <!-- 🖼 IMAGE AMBIANCE -->
+  <div class="contact-visual">
+    <img src="/images/pexels-achraf-borkadi-salon-34086242.jpg" alt="Appartement Airbnb">
   </div>
 
   <!-- 🔥 CTA PRIORITAIRE -->
   <div class="quick-contact">
 
-    <a href="https://wa.me/33766665848?text=Bonjour,%20je%20souhaite%20un%20devis"
+    <a href={waHref}
        target="_blank"
        class="contact-main">
-      💬 Discuter sur WhatsApp
+      💬 Obtenir un devis sur WhatsApp
       <span>Réponse rapide</span>
     </a>
 
     <div class="secondary">
-      <a href="tel:+33766665848">📞 Appeler</a>
-      <a href="mailto:contact@ava-conciergerie.fr">✉️ Email</a>
+      <a href={telHref}>📞 Appeler</a>
+      <a href={`mailto:${contacts.email}`}>✉️ Email</a>
     </div>
 
+  </div>
+
+  <!-- 💡 POURQUOI -->
+  <div class="why-contact">
+    <h2>Pourquoi nous contacter ?</h2>
+
+    <div class="why-grid">
+      <div>
+        <h3>Gain de temps</h3>
+        <p>On s’occupe de tout, de A à Z.</p>
+      </div>
+
+      <div>
+        <h3>Plus de revenus</h3>
+        <p>Optimisation des prix et du taux d’occupation.</p>
+      </div>
+
+      <div>
+        <h3>Sérénité totale</h3>
+        <p>Gestion complète sans stress.</p>
+      </div>
+    </div>
   </div>
 
   <!-- 🔥 FORM -->
@@ -80,24 +112,20 @@
         required>{form?.values?.message ?? ''}</textarea>
     </div>
 
-    <!-- 🔥 HONEYPOT -->
+    <!-- 🔒 HONEYPOT -->
     <div class="honeypot" aria-hidden="true">
-      <label for="website">Ne pas remplir</label>
-      <input
-        id="website"
-        type="text"
-        name="website"
-        tabindex="-1"
-        autocomplete="off" />
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
     </div>
 
     <button type="submit" disabled={$loading}>
       {#if $loading}
         Envoi en cours...
       {:else}
-        Demander un devis
+        Demander mon devis gratuit
       {/if}
     </button>
+
+    <p class="hint">⏱ Réponse en moins de 24h</p>
 
     {#if form?.error}
       <p class="error">{form.error}</p>
@@ -105,13 +133,13 @@
 
     {#if form?.success}
       <p class="success">
-        ✅ Votre message a bien été envoyé. Nous vous répondons rapidement.
+        ✅ Votre message a bien été envoyé.
       </p>
     {/if}
 
   </form>
 
-  <!-- 🔥 RASSURANCE -->
+  <!-- 🔥 TRUST -->
   <div class="trust">
     <p>✔ Réponse rapide</p>
     <p>✔ Service personnalisé</p>
@@ -132,23 +160,33 @@
 /* 🔥 HERO */
 .hero-contact {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .hero-contact h1 {
   font-size: 2.5rem;
-  font-weight: 700;
 }
 
 .hero-contact p {
   color: #666;
-  margin-top: 10px;
 }
 
-/* 🔥 QUICK CONTACT */
+/* 🖼 IMAGE */
+.contact-visual {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.contact-visual img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+}
+
+/* 🔥 CTA */
 .quick-contact {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .contact-main {
@@ -159,32 +197,32 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.contact-main span {
-  display: block;
-  font-size: 0.8rem;
-  opacity: 0.9;
-}
-
-.contact-main:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
 }
 
 .secondary {
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-.secondary a {
-  color: #444;
-  text-decoration: none;
-  font-size: 0.9rem;
+/* 🔥 WHY */
+.why-contact {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.why-grid div {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 /* 🔥 FORM */
@@ -192,98 +230,60 @@
   background: #f9f9f9;
   padding: 30px;
   border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
-  flex-wrap: wrap;
 }
 
 .field {
-  flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-label {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-  color: #555;
 }
 
 input, textarea {
   padding: 14px;
   border-radius: 10px;
   border: 1px solid #ddd;
-  font-size: 1rem;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: #041D80;
-  box-shadow: 0 0 0 2px rgba(4, 29, 128, 0.1);
-}
-
-/* 🔥 BOUTON */
 button {
+  margin-top: 20px;
   background: black;
   color: white;
   padding: 16px;
   border-radius: 50px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: translateY(-2px);
-}
-
-button:disabled {
+.hint {
+  font-size: 0.8rem;
   opacity: 0.6;
-  cursor: not-allowed;
+  text-align: center;
 }
 
-/* 🔥 HONEYPOT */
+/* 🔥 TRUST */
+.trust {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .honeypot {
   position: absolute;
   left: -9999px;
 }
 
-/* 🔥 TRUST */
-.trust {
-  margin-top: 40px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.trust p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* 🔥 FEEDBACK */
-.error {
-  color: red;
-}
-
-.success {
-  color: green;
-  font-weight: 500;
-}
-
 /* 📱 MOBILE */
 @media (max-width: 768px) {
   .grid {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
   }
 }
 

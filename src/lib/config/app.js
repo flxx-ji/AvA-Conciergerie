@@ -1,21 +1,10 @@
-// Bascule globale pour ton portfolio.
-// Passe à false pour rendre tel/WhatsApp réellement cliquables.
+// Bascule globale pour ton portfolio
 export const demo = true;
 
-// Coordonnées (mettra mes vraies infos quand tu voudras activer)
-// export const contacts = {
-//   phoneDisplay: '+33 6 12 34 56 78',
-//   phoneRaw: '+33612345678',              
-//   whatsapp: '33612345678',               
-//   email: 'contact@ava-conciergerie.demo' 
-// };
-
-
-
-
+// Coordonnées
 export const contacts = {
-  phoneDisplay: '+33777324144',
-                
-  whatsapp: '+33777324144',               
-  email: 'contact@jayhembeestudio.com'  
+  phoneDisplay: '+33 7 77 32 41 44', // 👀 affichage propre
+  phoneRaw: '33777324144',           // 🔥 pour tel:
+  whatsapp: '33777324144',           // 🔥 pour wa.me
+  email: 'contact@jayhembeestudio.com'
 };
