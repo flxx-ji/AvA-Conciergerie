@@ -6,3 +6,7 @@
 
 [dev]
   framework = "sveltekit"
+  
+[build]
+  command = "npm run build"
+  publish = "build"
