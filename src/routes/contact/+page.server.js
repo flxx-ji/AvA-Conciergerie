@@ -2,6 +2,8 @@ import { fail } from '@sveltejs/kit';
 import { Resend } from 'resend';
 import { RESEND_API_KEY } from '$env/static/private';
 
+export const prerender = false; // 🔥 IMPORTANT
+
 export const actions = {
   default: async ({ request }) => {
 
@@ -24,8 +26,8 @@ export const actions = {
 
     try {
       await resend.emails.send({
-       from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
-        to: [ 'contact@avaconciergerie.fr' , 'jiflexxone@gmail.com'],
+        from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
+        to: ['contact@avaconciergerie.fr', 'jiflexxone@gmail.com'],
         subject: `Nouveau message de ${name}`,
         replyTo: email,
         html: `
