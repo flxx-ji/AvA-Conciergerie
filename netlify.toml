@@ -1,12 +1,3 @@
 [build]
   command = "npm run build"
-
-[build.environment]
-  NODE_VERSION = "20"
-
-[dev]
-  framework = "sveltekit"
-  
-[build]
-  command = "npm run build"
   publish = "build"
