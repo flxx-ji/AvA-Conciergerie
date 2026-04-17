@@ -24,30 +24,51 @@ export const actions = {
       });
     }
 
+    // try {
+    //   await resend.emails.send({
+    //     from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
+    //     to: ['contact@avaconciergerie.fr', 'jiflexxone@gmail.com'],
+    //     subject: `Nouveau message de ${name}`,
+    //     replyTo: email,
+    //     html: `
+    //       <h2>Nouveau message</h2>
+    //       <p><strong>Nom :</strong> ${name}</p>
+    //       <p><strong>Email :</strong> ${email}</p>
+    //       <p><strong>Message :</strong></p>
+    //       <p>${message}</p>
+    //     `
+    //   });
+
+    //   return { success: true };
+
+    // } catch (error) {
+    //   console.error(error);
+
+    //   return fail(500, {
+    //     error: "Erreur lors de l'envoi du message.",
+    //     values: { name, email, message }
+    //   });
+    // }
+
     try {
-      await resend.emails.send({
-        from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
-        to: ['contact@avaconciergerie.fr', 'jiflexxone@gmail.com'],
-        subject: `Nouveau message de ${name}`,
-        replyTo: email,
-        html: `
-          <h2>Nouveau message</h2>
-          <p><strong>Nom :</strong> ${name}</p>
-          <p><strong>Email :</strong> ${email}</p>
-          <p><strong>Message :</strong></p>
-          <p>${message}</p>
-        `
-      });
+  console.log('API KEY:', RESEND_API_KEY);
 
-      return { success: true };
+  await resend.emails.send({
+    from: 'onboarding@resend.dev',
+    to: ['jiflexxone@gmail.com'], // juste toi pour test
+    subject: 'TEST AVA',
+    html: `<p>Test OK</p>`
+  });
 
-    } catch (error) {
-      console.error(error);
+  return { success: true };
 
-      return fail(500, {
-        error: "Erreur lors de l'envoi du message.",
-        values: { name, email, message }
-      });
-    }
+} catch (error) {
+  console.error('ERREUR RESEND:', error);
+
+  return fail(500, {
+    error: "Erreur envoi test",
+    values: { name, email, message }
+  });
+}
   }
 };
