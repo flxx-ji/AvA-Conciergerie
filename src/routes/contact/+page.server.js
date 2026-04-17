@@ -2,11 +2,13 @@ import { fail } from '@sveltejs/kit';
 import { Resend } from 'resend';
 import { RESEND_API_KEY } from '$env/static/private';
 
-export const prerender = false; // 🔥 IMPORTANT
+export const prerender = false;
 
 export const actions = {
   default: async ({ request }) => {
-     console.log('FORM SUBMITTED 🔥');
+
+    console.log('FORM SUBMITTED 🔥');
+
     const resend = new Resend(RESEND_API_KEY);
 
     const form = await request.formData();
@@ -24,51 +26,32 @@ export const actions = {
       });
     }
 
-    // try {
-    //   await resend.emails.send({
-    //     from: 'AvA Conciergerie <contact@avaconciergerie.fr>',
-    //     to: ['contact@avaconciergerie.fr', 'jiflexxone@gmail.com'],
-    //     subject: `Nouveau message de ${name}`,
-    //     replyTo: email,
-    //     html: `
-    //       <h2>Nouveau message</h2>
-    //       <p><strong>Nom :</strong> ${name}</p>
-    //       <p><strong>Email :</strong> ${email}</p>
-    //       <p><strong>Message :</strong></p>
-    //       <p>${message}</p>
-    //     `
-    //   });
-
-    //   return { success: true };
-
-    // } catch (error) {
-    //   console.error(error);
-
-    //   return fail(500, {
-    //     error: "Erreur lors de l'envoi du message.",
-    //     values: { name, email, message }
-    //   });
-    // }
-
     try {
-  console.log('API KEY:', RESEND_API_KEY);
+      console.log('API KEY:', RESEND_API_KEY);
 
-  await resend.emails.send({
-    from: 'onboarding@resend.dev',
-    to: ['jiflexxone@gmail.com'], // juste toi pour test
-    subject: 'TEST AVA',
-    html: `<p>Test OK</p>`
-  });
+      const result = await resend.emails.send({
+        from: 'onboarding@resend.dev', // ⚠️ TEST ONLY
+        to: ['delivered@resend.dev'], // 🔥 inbox test Resend
+        subject: 'TEST AVA',
+        html: `
+          <h2>TEST OK</h2>
+          <p>Nom: ${name}</p>
+          <p>Email: ${email}</p>
+          <p>Message: ${message}</p>
+        `
+      });
 
-  return { success: true };
+      console.log('RESEND RESULT:', result); // 🔥 ULTRA IMPORTANT
 
-} catch (error) {
-  console.error('ERREUR RESEND:', error);
+      return { success: true };
 
-  return fail(500, {
-    error: "Erreur envoi test",
-    values: { name, email, message }
-  });
-}
+    } catch (error) {
+      console.error('ERREUR RESEND:', error);
+
+      return fail(500, {
+        error: "Erreur envoi test",
+        values: { name, email, message }
+      });
+    }
   }
 };
