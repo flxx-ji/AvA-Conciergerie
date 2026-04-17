@@ -30,17 +30,17 @@ export const actions = {
       console.log('API KEY:', RESEND_API_KEY);
 
       const result = await resend.emails.send({
-        from: 'onboarding@resend.dev', // ⚠️ TEST ONLY
-        to: ['delivered@resend.dev'], // 🔥 inbox test Resend
-        subject: 'TEST AVA',
-        html: `
-          <h2>TEST OK</h2>
-          <p>Nom: ${name}</p>
-          <p>Email: ${email}</p>
-          <p>Message: ${message}</p>
-        `
-      });
-
+  from: 'AvA Conciergerie <onboarding@resend.dev>', // temporaire
+  to: ['jiflexxone@gmail.com', 'contact@avaconciergerie.fr'],
+  subject: `Nouveau message de ${name}`,
+  replyTo: email,
+  html: `
+    <h2>Nouveau message</h2>
+    <p><strong>Nom :</strong> ${name}</p>
+    <p><strong>Email :</strong> ${email}</p>
+    <p>${message}</p>
+  `
+});
       console.log('RESEND RESULT:', result); // 🔥 ULTRA IMPORTANT
 
       return { success: true };
