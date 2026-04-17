@@ -30,7 +30,7 @@ export const actions = {
       console.log('API KEY:', RESEND_API_KEY);
 
       const result = await resend.emails.send({
-  from: 'AvA Conciergerie <onboarding@resend.dev>', // temporaire
+   from: 'AvA Conciergerie <contact@avaconciergerie.fr>',  
   to: ['jiflexxone@gmail.com' ],
   subject: `Nouveau message de ${name}`,
   replyTo: email,
