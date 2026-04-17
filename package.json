@@ -16,7 +16,6 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
-		 
 		"@sveltejs/kit": "^2.38.1",
 		"@sveltejs/vite-plugin-svelte": "^6.2.0",
 		"eslint": "^9.18.0",
@@ -34,6 +33,7 @@
 	},
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
+		"@sveltejs/adapter-netlify": "^6.0.4",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"bootstrap": "^5.3.8",
 		"bootstrap-icons": "^1.13.1",
