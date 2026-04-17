@@ -77,7 +77,7 @@
   </div>
 
   <!-- 🔥 FORM -->
-  <form method="POST" use:handleEnhance class="contact-form">
+  <form method="POST" action="?/default" class="contact-form">
 
     <div class="grid">
       <div class="field">

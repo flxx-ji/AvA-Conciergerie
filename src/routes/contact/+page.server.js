@@ -6,7 +6,7 @@ export const prerender = false; // 🔥 IMPORTANT
 
 export const actions = {
   default: async ({ request }) => {
-
+     console.log('FORM SUBMITTED 🔥');
     const resend = new Resend(RESEND_API_KEY);
 
     const form = await request.formData();
