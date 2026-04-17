@@ -31,7 +31,7 @@ export const actions = {
 
       const result = await resend.emails.send({
    from: 'AvA Conciergerie <contact@avaconciergerie.fr>',  
-  to: ['jiflexxone@gmail.com' ],
+  to: ['contact@avaconciergerie.fr', 'contact@jayhembeestudio.com' ],
   subject: `Nouveau message de ${name}`,
   replyTo: email,
   html: `
