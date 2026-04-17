@@ -31,7 +31,7 @@ export const actions = {
 
       const result = await resend.emails.send({
   from: 'AvA Conciergerie <onboarding@resend.dev>', // temporaire
-  to: ['contact@jayhembeestudio.com', 'contact@avaconciergerie.fr'],
+  to: ['jiflexxone@gmail.com' ],
   subject: `Nouveau message de ${name}`,
   replyTo: email,
   html: `
