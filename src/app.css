@@ -76,6 +76,16 @@ p {
   background: var(--beige-soft);
 }
 
+/* 🔥 Pages */
+
+.about {
+  background: var(--beige-soft);
+}
+
+.contact {
+  background: var(--beige-soft);
+}
+
 /* 🔥 CARDS PREMIUM */
 .card,
 .bloc {
