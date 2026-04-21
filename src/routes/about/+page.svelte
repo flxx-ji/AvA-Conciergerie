@@ -4,8 +4,7 @@
   <div class="hero">
     <h1>À propos</h1>
     <p>
-      AvA Conciergerie accompagne les propriétaires Airbnb avec un service fiable,
-      discret et orienté résultats.
+      Une gestion complète et professionnelle de votre bien, pensée pour optimiser vos revenus et simplifier votre quotidien.
     </p>
   </div>
 
@@ -18,15 +17,23 @@
 
     <div class="text">
       <h2>Notre mission</h2>
+
       <p>
-        Libérer votre temps et maximiser vos revenus en prenant en charge
-        l’ensemble de la gestion de votre logement.
+        Animée par une véritable passion pour le voyage et les standards d’excellence en matière d’accueil, AvA Conciergerie accompagne les propriétaires dans la gestion et la valorisation de leur bien en location courte durée.
       </p>
 
       <p>
-        De la communication voyageurs au ménage, en passant par l’optimisation
-        des prix, nous assurons une gestion complète, rigoureuse et sans stress.
+        De la stratégie tarifaire adaptée aux saisons à la gestion des réservations, en passant par la communication avec les voyageurs et la coordination des prestations, chaque aspect est pris en charge avec rigueur et professionnalisme.
       </p>
+
+      <p>
+        Même à ses débuts, AvA Conciergerie repose sur une vision claire : proposer un service structuré, fiable et orienté résultats, avec une attention constante portée à l’expérience client.
+      </p>
+
+      <p class="highlight">
+        Confier son bien, c’est avant tout une question de confiance. Notre rôle est de la construire et de la mériter à chaque étape.
+      </p>
+
     </div>
 
   </div>
@@ -40,17 +47,17 @@
 
       <div class="card">
         <h3>Discrétion</h3>
-        <p>Un service fiable et professionnel, en toute confiance.</p>
+        <p>Une gestion fiable et professionnelle, dans le respect total de votre bien.</p>
       </div>
 
       <div class="card">
         <h3>Proactivité</h3>
-        <p>Nous anticipons les besoins pour éviter les problèmes.</p>
+        <p>Anticiper, optimiser et réagir rapidement pour maximiser vos performances.</p>
       </div>
 
       <div class="card">
-        <h3>Qualité</h3>
-        <p>Chaque détail compte pour offrir une expérience premium.</p>
+        <h3>Exigence</h3>
+        <p>Chaque détail est pensé pour offrir une expérience premium aux voyageurs.</p>
       </div>
 
     </div>
@@ -82,6 +89,8 @@
 .hero p {
   color: #666;
   margin-top: 10px;
+  max-width: 600px;
+  margin-inline: auto;
 }
 
 /* 🔥 CONTENT */
@@ -112,7 +121,15 @@
 
 .text p {
   color: #555;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* 🔥 AJOUT PREMIUM */
+.highlight {
+  font-weight: 600;
+  color: #111;
+  margin-top: 15px;
 }
 
 /* 🔥 VALUES */
@@ -133,6 +150,12 @@
   padding: 25px;
   border-radius: 16px;
   max-width: 250px;
+  transition: transform 0.2s ease;
+}
+
+/* 🔥 petit effet UX */
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .card h3 {

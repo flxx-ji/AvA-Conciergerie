@@ -41,8 +41,7 @@ export const actions = {
     <p>${message}</p>
   `
 });
-      console.log('RESEND RESULT:', result); // 🔥 ULTRA IMPORTANT
-
+      console.log('RESEND RESULT:', result);  
       return { success: true };
 
     } catch (error) {
