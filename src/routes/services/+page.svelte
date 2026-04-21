@@ -15,42 +15,49 @@
     <div class="content">
 
       <h1>
-        Nos services de <span>conciergerie Airbnb</span>
-      </h1>
+  Confiez votre bien, <span>nous nous occupons de tout</span>
+</h1>
 
-      <p class="intro">
-        Une gestion complète de votre logement à Caen et ses alentours.
-      </p>
+<p class="intro">
+  Une gestion complète, professionnelle et optimisée pour maximiser vos revenus Airbnb à Caen et ses alentours.
+</p>
 
       <!-- 🔥 BLOC 1 -->
       <div class="bloc">
-        <h3>Gestion des réservations et des voyageurs</h3>
-        <ul>
-          <li>Communication rapide avec vos locataires</li>
-          <li>Check-in et check-out fluides</li>
-          <li>Gestion des imprévus</li>
-        </ul>
+       <h3>Gestion des voyageurs</h3>
+<ul>
+  <li>Réponses rapides et professionnelles 7j/7</li>
+  <li>Check-in et check-out optimisés</li>
+  <li>Gestion complète des imprévus</li>
+</ul>
       </div>
 
       <!-- 🔥 BLOC 2 -->
       <div class="bloc">
-        <h3>Entretien et maintenance</h3>
-        <ul>
-          <li>Ménage professionnel après chaque séjour</li>
-          <li>Organisation des réparations</li>
-          <li>Contrôle qualité du logement</li>
-        </ul>
+        <h3>Entretien et suivi du logement</h3>
+<ul>
+  <li>Ménage professionnel après chaque séjour</li>
+  <li>Coordination des interventions techniques</li>
+  <li>Contrôle qualité systématique</li>
+</ul>
       </div>
 
       <!-- 🔥 BLOC 3 -->
       <div class="bloc">
-        <h3>Optimisation des revenus</h3>
-        <ul>
-          <li>Analyse du marché local</li>
-          <li>Ajustement dynamique des prix</li>
-          <li>Maximisation du taux d’occupation</li>
-        </ul>
+        <h3>Optimisation des performances</h3>
+<ul>
+  <li>Analyse du marché local</li>
+  <li>Tarification dynamique selon les saisons</li>
+  <li>Maximisation du taux d’occupation</li>
+</ul>
       </div>
+
+      <div class="why">
+  <h2>Pourquoi choisir AvA Conciergerie ?</h2>
+  <p>
+    Une gestion rigoureuse, un suivi personnalisé et une approche orientée résultats pour valoriser votre bien dès les premiers mois.
+  </p>
+</div>
 
       <!-- 🔥 CTA -->
       <div class="cta">
@@ -160,6 +167,22 @@
   .content h1 {
     font-size: 2rem;
   }
+}
+
+.why {
+  margin-top: 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.why h2 {
+  margin-bottom: 10px;
+}
+
+.why p {
+  opacity: 0.8;
 }
 
 </style>
