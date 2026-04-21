@@ -85,7 +85,10 @@ p {
 .brand-accent {
   color: var(--accent);
 }
-/* 🔥 INPUTS */
+
+.navbar {
+  background: var(--white)  
+}
 input, textarea {
   border: 1px solid var(--beige-dark);
 }

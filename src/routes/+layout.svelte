@@ -33,7 +33,7 @@
 <div class="d-flex flex-column min-vh-100">
 
   <!-- ====== HEADER ====== -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">
         AvA <span class="brand-accent">Conciergerie</span>
