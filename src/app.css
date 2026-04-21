@@ -1,7 +1,88 @@
- @import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
-:root { scroll-behavior: smooth; }
-.hover-raise { transition: transform .2s, box-shadow .2s; }
-.hover-raise:hover { transform: translateY(-2px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.08); }
-.logos img { filter: grayscale(1); opacity:.7; transition: .2s; }
-.logos img:hover { filter:none; opacity:1; }
+
+/* 🔥 SCROLL */
+:root {
+  scroll-behavior: smooth;
+
+  /* 🎨 PALETTE PREMIUM */
+  --beige-main: #EAE0D5;
+  --beige-soft: #F5EFE6;
+  --beige-dark: #D6C3B3;
+
+  --text-dark: #2B2B2B;
+  --text-soft: #6B6B6B;
+
+  --white: #ffffff;
+
+  --accent: #0d6efd;
+}
+
+/* 🔥 BASE SITE */
+body {
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+/* 🔥 TITRES */
+h1, h2, h3, h4 {
+  color: var(--text-dark);
+}
+
+/* 🔥 TEXTE SECOND */
+p {
+  color: var(--text-soft);
+}
+
+/* 🔥 HOVER GLOBAL */
+.hover-raise {
+  transition: transform .2s, box-shadow .2s;
+}
+
+.hover-raise:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* 🔥 LOGOS */
+.logos img {
+  filter: grayscale(1);
+  opacity: .7;
+  transition: .2s;
+}
+
+.logos img:hover {
+  filter: none;
+  opacity: 1;
+}
+
+/* 🔥 BOUTONS BOOTSTRAP OVERRIDE */
+.btn-primary {
+  background: var(--text-dark);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: black;
+}
+
+/* 🔥 SECTION BEIGE */
+.section-beige {
+  background: var(--beige-soft);
+}
+
+/* 🔥 CARDS PREMIUM */
+.card,
+.bloc {
+  border: 1px solid var(--beige-main);
+}
+
+/* 🔥 INPUTS */
+input, textarea {
+  border: 1px solid var(--beige-dark);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--text-dark);
+}

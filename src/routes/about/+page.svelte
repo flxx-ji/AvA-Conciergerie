@@ -84,10 +84,11 @@
 .hero h1 {
   font-size: 2.5rem;
   font-weight: 700;
+  color: var(--text-dark);
 }
 
 .hero p {
-  color: #666;
+  color: var(--text-soft);
   margin-top: 10px;
   max-width: 600px;
   margin-inline: auto;
@@ -117,24 +118,29 @@
 
 .text h2 {
   margin-bottom: 15px;
+  color: var(--text-dark);
 }
 
 .text p {
-  color: #555;
+  color: var(--text-soft);
   margin-bottom: 12px;
   line-height: 1.6;
 }
 
-/* 🔥 AJOUT PREMIUM */
+/* 🔥 TEXTE IMPORTANT */
 .highlight {
   font-weight: 600;
-  color: #111;
+  color: var(--text-dark);
   margin-top: 15px;
 }
 
 /* 🔥 VALUES */
 .values {
   text-align: center;
+}
+
+.values h2 {
+  color: var(--text-dark);
 }
 
 .cards {
@@ -146,20 +152,27 @@
 }
 
 .card {
-  background: #f9f9f9;
+  background: var(--beige-main);
   padding: 25px;
   border-radius: 16px;
   max-width: 250px;
-  transition: transform 0.2s ease;
+  border: 1px solid var(--beige-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 🔥 petit effet UX */
+/* 🔥 UX PREMIUM */
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .card h3 {
   margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.card p {
+  color: var(--text-soft);
 }
 
 /* 📱 MOBILE */

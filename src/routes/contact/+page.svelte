@@ -32,12 +32,12 @@
     </p>
   </div>
 
-  <!-- 🖼 IMAGE AMBIANCE -->
+  <!-- 🖼 IMAGE -->
   <div class="contact-visual">
     <img src="/images/pexels-achraf-borkadi-salon-34086242.jpg" alt="Appartement Airbnb">
   </div>
 
-  <!-- 🔥 CTA PRIORITAIRE -->
+  <!-- 🔥 CTA -->
   <div class="quick-contact">
 
     <a href={waHref}
@@ -77,7 +77,7 @@
   </div>
 
   <!-- 🔥 FORM -->
-  <form method="POST" action="?/default" class="contact-form">
+  <form method="POST" action="?/default" use:handleEnhance class="contact-form">
 
     <div class="grid">
       <div class="field">
@@ -113,7 +113,7 @@
     </div>
 
     <!-- 🔒 HONEYPOT -->
-    <div class="honeypot" aria-hidden="true">
+    <div class="honeypot">
       <input type="text" name="website" tabindex="-1" autocomplete="off" />
     </div>
 
@@ -165,10 +165,11 @@
 
 .hero-contact h1 {
   font-size: 2.5rem;
+  color: var(--text-dark);
 }
 
 .hero-contact p {
-  color: #666;
+  color: var(--text-soft);
 }
 
 /* 🖼 IMAGE */
@@ -213,6 +214,10 @@
   margin-bottom: 40px;
 }
 
+.why-contact h2 {
+  color: var(--text-dark);
+}
+
 .why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -220,14 +225,15 @@
 }
 
 .why-grid div {
-  background: white;
+  background: var(--white);
+  border: 1px solid var(--beige-main);
   padding: 20px;
   border-radius: 12px;
 }
 
 /* 🔥 FORM */
 .contact-form {
-  background: #f9f9f9;
+  background: var(--beige-soft);
   padding: 30px;
   border-radius: 16px;
 }
@@ -246,21 +252,36 @@
 input, textarea {
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--beige-dark);
 }
 
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--text-dark);
+}
+
+/* 🔥 BUTTON */
 button {
   margin-top: 20px;
-  background: black;
+  background: var(--text-dark);
   color: white;
   padding: 16px;
   border-radius: 50px;
 }
 
+/* 🔥 TEXT */
 .hint {
   font-size: 0.8rem;
   opacity: 0.6;
   text-align: center;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
 }
 
 /* 🔥 TRUST */
