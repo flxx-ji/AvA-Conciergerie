@@ -36,7 +36,7 @@
   <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">
-        AvA <span class="text-primary">Conciergerie</span>
+        AvA <span class="brand-accent">Conciergerie</span>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">

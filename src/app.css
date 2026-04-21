@@ -82,6 +82,9 @@ p {
   border: 1px solid var(--beige-main);
 }
 
+.brand-accent {
+  color: var(--accent);
+}
 /* 🔥 INPUTS */
 input, textarea {
   border: 1px solid var(--beige-dark);
