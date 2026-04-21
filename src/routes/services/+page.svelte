@@ -122,6 +122,7 @@
   padding: 15px;
   border-radius: 12px;
   border: 1px solid var(--beige-main);
+  background: var(--white);
   transition: 0.3s;
 }
 
@@ -132,6 +133,8 @@
 
 .bloc:hover {
   background: var(--beige-main);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
 /* 🔥 LISTE */
@@ -164,11 +167,11 @@
 /* 🔥 WHY */
 .why {
   margin-top: 40px;
-  padding: 20px;
+  padding: 25px;
   background: var(--white);
   border-radius: 12px;
   border: 1px solid var(--beige-main);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
 }
 
 .why h2 {
