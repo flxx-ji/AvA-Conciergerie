@@ -57,7 +57,7 @@
 
       <div class="card">
         <h3>Exigence</h3>
-        <p>Chaque détail est pensé pour offrir une expérience premium aux voyageurs.</p>
+        <p>Chaque détail est pensé pour offrir une expérience de qualité aux voyageurs.</p>
       </div>
 
     </div>
