@@ -1,7 +1,12 @@
+/* ========================= */
+/* 🔥 IMPORTS */
+/* ========================= */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+/* ========================= */
 /* 🔥 VARIABLES */
+/* ========================= */
 :root {
   scroll-behavior: smooth;
 
@@ -13,120 +18,633 @@
   --text-soft: #6B6B6B;
 
   --white: #ffffff;
-
   --accent: #5A3E2B;
 }
 
+/* ========================= */
 /* 🔥 BASE */
+/* ========================= */
 body {
   margin: 0;
   color: var(--text-dark);
   background: var(--white);
+  font-family: system-ui, sans-serif;
 }
 
-/* 🔥 TITRES */
-h1, h2, h3, h4 {
-  color: var(--text-dark);
+/* ========================= */
+/* 🔥 HERO */
+/* ========================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+
+  background-image: url('/images/cotenormande.jpg');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 🔥 TEXTE */
-p {
-  color: var(--text-soft);
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
 }
 
-/* 🔥 NAVBAR */
-.navbar {
-  background: var(--white);
+.hero .content {
+  position: relative;
+  color: white;
+  text-align: center;
+  max-width: 800px;
+  padding: 20px;
 }
 
-.brand-accent {
-  color: var(--accent);
+.hero h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
-/* 🔥 BOUTONS (FIX TOTAL BOOTSTRAP) */
-.btn {
+/* badges */
+.badges span {
+  background: rgba(255,255,255,0.15);
+  padding: 8px 14px;
+  border-radius: 30px;
+  margin: 5px;
+  display: inline-block;
+  backdrop-filter: blur(6px);
+}
+
+/* boutons hero */
+.buttons {
+  margin-top: 40px;
+}
+
+.cta-main-hero {
+  background: white;
+  color: black;
+  padding: 14px 28px;
   border-radius: 50px;
+  margin-right: 10px;
+  text-decoration: none;
   font-weight: 600;
-  padding: 12px 25px;
-  transition: 0.3s ease;
 }
 
-/* PRIMARY */
-.btn-primary {
-  background-color: var(--text-dark) !important;
-  border: none !important;
-  color: white !important;
+.cta-whatsapp {
+  background: #25D366;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.btn-primary:hover {
-  background-color: black !important;
+/* ========================= */
+/* 🔥 HERO MOBILE CLEAN */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  .hero .buttons {
+    display: flex;
+    flex-direction: column; /* 👈 colonne */
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .hero .buttons a {
+    width: 90%; /* 👈 pas full width pour respirer */
+    text-align: center;
+  }
+
+  .cta-main-hero,
+  .cta-whatsapp {
+    padding: 16px;
+    border-radius: 40px;
+    font-size: 15px;
+  }
+
 }
 
-/* OUTLINE SECONDARY */
-.btn-outline-secondary {
-  border: 1px solid var(--text-dark) !important;
-  color: var(--text-dark) !important;
-  background: transparent !important;
+/* ========================= */
+/* 🔥 PATCHWORK */
+/* ========================= */
+.patchwork {
+  padding: 80px 20px;
+  position: relative;
 }
 
-.btn-outline-secondary:hover {
-  background: var(--text-dark) !important;
-  color: white !important;
+.background-text {
+  position: absolute;
+  font-size: 200px;
+  font-weight: 800;
+  opacity: 0.03;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* OUTLINE SUCCESS (WHATSAPP FIX) */
-.btn-outline-success {
-  border: 1px solid var(--accent) !important;
-  color: var(--accent) !important;
-  background: transparent !important;
+.patchwork-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.btn-outline-success:hover {
-  background: var(--accent) !important;
-  color: white !important;
+.patch-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 220px;
 }
 
-/* 🔥 SECTIONS */
-.section-beige,
-.about,
-.contact {
+.patch-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.patch-card:hover img {
+  transform: scale(1.05);
+}
+
+.patch-card span {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ========================= */
+/* 🔥 SERVICES */
+/* ========================= */
+.services {
+  padding: 80px 20px;
   background: var(--beige-soft);
 }
 
-/* 🔥 CARDS */
-.card,
+.services-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.services-image img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* blocs */
 .bloc {
-  border: 1px solid var(--beige-main);
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
 }
 
-/* 🔥 INPUTS */
+.bloc:hover {
+  transform: translateY(-5px);
+}
+
+/* CTA services */
+.services-cta {
+  margin-top: 40px;
+}
+
+.cta-main {
+  background: var(--text-dark);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* ========================= */
+/* 🔥 FIX MOBILE BOUTONS SERVICES */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  .services-cta {
+    flex-direction: column; /* 👈 passe en colonne */
+    align-items: stretch;   /* 👈 full width */
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .services-cta a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .services-cta .cta-main,
+  .services-cta .cta-whatsapp {
+    padding: 16px;
+    border-radius: 30px;
+  }
+
+}
+
+
+/* ========================= */
+/* 🔥 ABOUT */
+/* ========================= */
+.about {
+  padding: 80px 20px;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* ========================= */
+/* 🔥 CONTACT */
+/* ========================= */
+.contact {
+  padding: 80px 20px;
+  background: var(--beige-soft);
+}
+
+.contact-visual img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+/* grid formulaire */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
 input, textarea {
-  border: 1px solid var(--beige-dark);
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--text-dark);
+/* bouton form */
+button {
+  background: #2B2B2B;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
-/* 🔥 HOVER */
-.hover-raise {
-  transition: transform .2s, box-shadow .2s;
+button:hover {
+  transform: scale(1.05);
+  background: black;
 }
 
-.hover-raise:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+/* ========================= */
+/* 🔥 RESPONSIVE */
+/* ========================= */
+@media (max-width: 768px) {
+
+  .patchwork-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-container,
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
 }
 
-/* 🔥 LOGOS */
-.logos img {
-  filter: grayscale(1);
-  opacity: .7;
-  transition: .2s;
+/* ========================= */
+/* 🔥 ABOUT CLEAN VERSION */
+/* ========================= */
+.about {
+  padding: 80px 20px;
+  background: var(--beige-main);
 }
 
-.logos img:hover {
-  filter: none;
+/* header centré */
+.about-header {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.about-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.about-header p {
+  color: var(--text-soft);
+}
+
+/* layout */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* image */
+.about-image img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* texte */
+.about-text h3 {
+  margin-bottom: 15px;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+  color: var(--text-soft);
+}
+
+.about-text .highlight {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* valeurs */
+.values {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.value-card {
+  background: var(--beige-soft);
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ========================= */
+/* 🔥 CONTACT PREMIUM */
+/* ========================= */
+
+.contact {
+  padding: 100px 20px;
+  background: var(--beige-soft);
+}
+
+/* IMAGE */
+.contact-visual img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 24px;
+  margin-bottom: 60px;
+}
+
+/* CONTENU */
+.contact-container {
+  max-width: 620px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact-container h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contact-sub {
+  color: var(--text-soft);
+  margin-bottom: 40px;
+}
+
+/* ================= FORM ================= */
+
+form {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+/* GRID INPUTS */
+form .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* INPUTS */
+form input,
+form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  font-size: 14px;
+}
+
+/* TEXTAREA PLUS GRAND 🔥 */
+form textarea {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  min-height: 140px; /* 👈 hauteur augmentée */
+  resize: vertical;
+}
+
+/* ================= CTA PRINCIPAL ================= */
+
+.cta-main {
+  background: var(--text-dark);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 40px;
+  border: none;
+  width: 100%;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.cta-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= CTA SECONDAIRE ================= */
+
+.contact-alt {
+  margin-top: 25px;
+}
+
+/* bouton discret 🔥 */
+.cta-secondary {
+  display: inline-block;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.cta-secondary:hover {
   opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  form .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 80px 20px;
+  }
+}
+
+/* ========================= */
+/* 🔥 FIX GLOBAL BOUTONS MOBILE CLEAN */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  /* HERO : espace + lisibilité */
+  .hero .buttons {
+    gap: 16px;
+  }
+
+  .hero .buttons a {
+    width: 85%;
+    max-width: 280px;
+  }
+
+  /* ========================= */
+  /* 🔥 STICKY CTA FIX (évite chevauchement) */
+  /* ========================= */
+
+  .sticky-cta {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .sticky-cta a {
+    flex: 1;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  /* bouton appeler → plus visible */
+  .sticky-cta a:nth-child(2) {
+    background: #f1f1f1;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+
+  /* whatsapp → reste dominant */
+  .sticky-cta a:last-child {
+    background: #25D366;
+    color: white;
+    font-weight: 600;
+  }
+
+}
+
+/* ========================= */
+/* 🔥 AMÉLIORATION BOUTON APPELER (DESKTOP + MOBILE) */
+/* ========================= */
+
+.cta-secondary {
+  display: inline-block;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.cta-secondary:hover {
+  opacity: 1;
+  background: rgba(0,0,0,0.05);
 }

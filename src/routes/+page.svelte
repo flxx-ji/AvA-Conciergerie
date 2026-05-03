@@ -1,8 +1,61 @@
-<section class="hero">
-  <!-- 🔥 Overlay sombre -->
-  <div class="overlay"></div>
+<script lang="ts">
+  import { enhance } from '$app/forms';
+  import { writable } from 'svelte/store';
+  import { contacts } from '$lib/config/app.js';
 
-  <!-- 🔥 Contenu -->
+  // ==============================
+  // 🔥 STATE FEEDBACK (message success/error)
+  // ==============================
+  let showMessage = false;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  export let form;
+
+  // 👉 affichage message pendant 15s
+  $: if (form) {
+    if (form.success || form.error) {
+      showMessage = true;
+
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        showMessage = false;
+      }, 15000);
+    }
+  }
+
+  // ==============================
+  // 🔄 LOADING STATE
+  // ==============================
+  const loading = writable(false);
+
+  // ==============================
+  // 📞 CONTACT DYNAMIQUE
+  // ==============================
+  const telHref = `tel:${contacts.phoneRaw}`;
+  const waHref = `https://wa.me/${contacts.whatsapp}?text=Bonjour,%20je%20souhaite%20un%20devis`;
+
+  // ==============================
+  // 🚀 FORM ENHANCE (SvelteKit)
+  // ==============================
+  function handleEnhance(formElement) {
+    return enhance(formElement, () => {
+      loading.set(true);
+
+      return async ({ update }) => {
+        await update();
+        loading.set(false);
+      };
+    });
+  }
+</script>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero" aria-label="Présentation de la conciergerie">
+
+  <!-- overlay décoratif -->
+  <div class="overlay" aria-hidden="true"></div>
+
   <div class="content">
     <h1>
       Confiez votre bien,<br />
@@ -17,361 +70,246 @@
       Conciergerie Airbnb à Caen et en Normandie
     </p>
 
-    <!-- 🔥 RASSURANCE -->
+    <!-- ✔ preuves sociales -->
     <div class="badges">
       <span>✔ Réponse rapide</span>
       <span>✔ Service personnalisé</span>
       <span>✔ Intervention locale</span>
     </div>
 
+    <!-- 🔥 CTA principaux -->
     <div class="buttons">
-      <a href="/contact" class="btn-primary">
+      <a href="#contact" class="cta-main-hero">
         Demander un devis
       </a>
 
-      <a href="https://wa.me/+33777324144" target="_blank" class="btn-secondary">
+      <!-- ⚠️ sécurité + accessibilité -->
+      <a
+        href={waHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-whatsapp"
+        aria-label="Contacter via WhatsApp"
+      >
         WhatsApp
       </a>
     </div>
   </div>
 
-  <!-- 🔥 Scroll hint -->
-  <div class="scroll-indicator">↓</div>
-</section>
-
-<!-- 🔥 PATCHWORK -->
-<section class="patchwork">
-
-  <!-- texte fond -->
-  <div class="background-text">AVA</div>
-
-  <!-- grid images -->
-  <div class="grid">
-
-  <div class="card">
-    <img src="/images/montstmichel.jpg" alt="Mont Saint Michel" />
-    <span>Mont-Saint-Michel</span>
-  </div>
-
-  <div class="card">
-    <img src="/images/deauvilleplage.jpg" alt="Deauville" />
-    <span>Deauville</span>
-  </div>
-
-  <div class="card">
-    <img src="/images/cotenormande.jpg" alt="Côte Normande" />
-    <span>Côte Normande</span>
-  </div>
-
-  <div class="card">
-    <img src="/images/maisonscolombages.jpg" alt="Maisons normandes" />
-    <span>Architecture Normande</span>
-  </div>
-
-</div>
+  <!-- scroll décoratif -->
+  <div class="scroll-indicator" aria-hidden="true">↓</div>
 
 </section>
 
-<style>
+<!-- ================= PATCHWORK ================= -->
+<section class="patchwork" aria-label="Zones couvertes en Normandie">
 
-/* 🔥 HERO */
-.hero {
-  position: relative;
-  min-height: 100vh;
+  <!-- texte décoratif -->
+  <div class="background-text" aria-hidden="true">AVA</div>
 
-  background-image: url('/images/cotenormande.jpg');
-  background-size: cover;
-  background-position: center;
+  <!-- 🔥 IMPORTANT : grid renommé -->
+  <div class="patchwork-grid">
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    <!-- carte -->
+    <div class="patch-card">
+      <img src="/images/montstmichel.jpg" alt="Vue du Mont-Saint-Michel en Normandie" />
+      <span>Mont-Saint-Michel</span>
+    </div>
 
-/* 🔥 overlay */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.65),
-    rgba(0,0,0,0.4)
-  );
-  backdrop-filter: blur(2px);
-}
+    <div class="patch-card">
+      <img src="/images/deauvilleplage.jpg" alt="Plage de Deauville en Normandie" />
+      <span>Deauville</span>
+    </div>
 
-/* 🔥 contenu */
-.content {
-  position: relative;
-  text-align: center;
-  color: white;
-  max-width: 800px;
-  padding: 20px;
+    <div class="patch-card">
+      <img src="/images/cotenormande.jpg" alt="Paysage de la côte normande" />
+      <span>Côte Normande</span>
+    </div>
 
-  animation: fadeUp 1s ease forwards;
-}
+    <div class="patch-card">
+      <img src="/images/maisonscolombages.jpg" alt="Maisons à colombages typiques de Normandie" />
+      <span>Architecture Normande</span>
+    </div>
 
-/* 🔥 titre */
-.content h1 {
-  font-size: 3.2rem;
-  font-weight: 700;
-  line-height: 1.2;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
-}
+  </div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services" aria-labelledby="services-title">
 
-/* 🔥 sous titre */
-.subtitle {
-  font-size: 1.6rem;
-  margin: 20px 0 10px;
-  font-weight: 500;
-}
+  <div class="services-container">
 
-/* 🔥 localisation */
-.location {
-  font-size: 1rem;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
+    <div class="services-image">
+      <img src="/images/apartments-living-room.jpg" alt="Appartement Airbnb moderne et lumineux" />
+    </div>
 
-/* 🔥 badges */
-.badges {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
-}
+    <div class="services-content">
 
-.badges span {
-  font-size: 0.9rem;
-  background: rgba(255,255,255,0.15);
-  padding: 6px 12px;
-  border-radius: 20px;
-  backdrop-filter: blur(4px);
-}
+      <h2 id="services-title">
+        Confiez votre bien,<br />
+        <span>nous nous occupons de tout</span>
+      </h2>
 
-/* 🔥 boutons */
-.buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+      <p class="intro">
+        Une gestion complète pour maximiser vos revenus Airbnb.
+      </p>
 
-.btn-primary {
-  background: white;
-  color: black;
-  padding: 14px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
+      <!-- 🔹 blocs services -->
+      <div class="bloc">
+        <h3>Gestion des voyageurs</h3>
+        <ul>
+          <li>Réponses rapides 7j/7</li>
+          <li>Check-in / Check-out optimisés</li>
+          <li>Gestion des imprévus</li>
+        </ul>
+      </div>
 
-.btn-primary:hover {
-  transform: translateY(-3px);
-}
+      <div class="bloc">
+        <h3>Entretien du logement</h3>
+        <ul>
+          <li>Ménage professionnel</li>
+          <li>Interventions techniques</li>
+          <li>Contrôle qualité</li>
+        </ul>
+      </div>
 
-.btn-secondary {
-  border: 1px solid white;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
+      <div class="bloc">
+        <h3>Optimisation des revenus</h3>
+        <ul>
+          <li>Analyse du marché</li>
+          <li>Tarification dynamique</li>
+          <li>Taux d’occupation optimisé</li>
+        </ul>
+      </div>
 
-.btn-secondary:hover {
-  background: white;
-  color: black;
-}
+      <!-- CTA -->
+      <div class="services-cta">
+        <a href="#contact" class="cta-main">Demander un devis</a>
 
-.btn-primary:hover,
-.btn-secondary:hover {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-whatsapp"
+        >
+          WhatsApp
+        </a>
+      </div>
 
-/* 🔥 scroll hint */
-.scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  font-size: 1.5rem;
-  color: white;
-  opacity: 0.7;
-  animation: bounce 2s infinite;
-}
+    </div>
+  </div>
+</section>
 
-/* 🔥 PATCHWORK */
-.patchwork {
-  position: relative;
-  padding: 120px 20px;
-  overflow: hidden;
-  background: #f8f8f8;
-}
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about" aria-labelledby="about-title">
 
-/* overlay blanc */
-.patchwork::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.6);
-  z-index: 0;
-}
+  <div class="about-header">
+    <h2 id="about-title">À propos</h2>
+    <p>
+      Une gestion complète et professionnelle de votre bien,
+      pensée pour optimiser vos revenus et simplifier votre quotidien.
+    </p>
+  </div>
 
-/* texte fond */
-.background-text {
-  position: absolute;
-  font-size: 60vw;
-  font-weight: 900;
-  letter-spacing: 10px;
+  <div class="about-content">
 
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.015),
-    rgba(0,0,0,0.08),
-    rgba(0,0,0,0.015)
-  );
+    <!-- image -->
+    <div class="about-image">
+      <img src="/images/kashculture-clean-about.jpg"
+           alt="Chambre Airbnb lumineuse et soignée" />
+    </div>
 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    <!-- texte -->
+    <div class="about-text">
+      <h3>Notre mission</h3>
 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+      <p>
+        Animée par une véritable passion pour le voyage et les standards d’excellence,
+        AvA Conciergerie accompagne les propriétaires dans la gestion et la valorisation
+        de leur bien en location courte durée.
+      </p>
 
-  user-select: none;
-  pointer-events: none;
-  z-index: 1;
-}
+      <p>
+        De la stratégie tarifaire à la communication voyageurs, chaque détail est pris en
+        charge avec rigueur et professionnalisme.
+      </p>
 
-/* grid */
-.grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  margin: auto;
-  z-index: 2;
-}
+      <p class="highlight">
+        Confier son bien, c’est avant tout une question de confiance.
+      </p>
 
-.grid img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
+    </div>
 
-.grid img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-}
+  </div>
 
-/* 🔥 animations */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+  <!-- valeurs -->
+  <div class="values">
 
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
+    <h3>Nos valeurs</h3>
 
-/* 📱 responsive */
-@media (max-width: 768px) {
-  .content h1 {
-    font-size: 2.2rem;
-  }
+    <div class="values-grid">
 
-  .subtitle {
-    font-size: 1.3rem;
-  }
+      <div class="value-card">
+        <h4>Discrétion</h4>
+        <p>Une gestion fiable et professionnelle.</p>
+      </div>
 
-  .location {
-    font-size: 0.9rem;
-  }
+      <div class="value-card">
+        <h4>Proactivité</h4>
+        <p>Anticiper et optimiser chaque situation.</p>
+      </div>
 
-  .grid {
-    grid-template-columns: 1fr;
-  }
+      <div class="value-card">
+        <h4>Exigence</h4>
+        <p>Une qualité constante pour vos voyageurs.</p>
+      </div>
 
-  .grid img {
-    height: 200px;
-  }
+    </div>
 
-  .background-text {
-    font-size: 30vw;
-  }
-}
+  </div>
 
+</section>
+<section class="contact" id="contact">
 
-/*Patchwork*/
-.card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-}
+  <!-- IMAGE -->
+  <div class="contact-visual">
+    <img src="/images/pexels-achraf-borkadi-salon-34086242.jpg" alt="Salon moderne" />
+  </div>
 
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: 0.4s ease;
-}
+  <!-- CONTENU -->
+  <div class="contact-container">
 
-/* 🔥 overlay gris */
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6); /* 🔥 plus sombre */
-  opacity: 0;
-  transition: 0.3s ease;
-}
+    <h2>Parlons de votre bien</h2>
+    <p class="contact-sub">
+      Confiez-nous votre logement et maximisez vos revenus sans effort.
+    </p>
 
-/* 🔥 texte */
-.card span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    <!-- FORM -->
+    <form method="POST" use:handleEnhance>
 
-  color: white;
-  font-weight: 700; /* 🔥 plus impact */
-  font-size: 1.6rem; /* 🔥 plus lisible */
-  text-align: center;
+      <div class="grid">
 
-  padding: 10px 20px;
-  border-radius: 30px;
+        <input name="name" placeholder="Votre nom" required />
+        <input type="email" name="email" placeholder="Votre email" required />
 
-  opacity: 0;
-  transition: 0.3s ease;
+      </div>
 
-  /* 🔥 lisibilité MAX */
-  text-shadow: 0 4px 20px rgba(0,0,0,0.9),
-               0 2px 10px rgba(0,0,0,0.6);
-}
-/* 🔥 hover */
-.card:hover img {
-  transform: scale(1.05);
-  filter: brightness(0.9);
-}
+      <textarea name="message" placeholder="Expliquez votre besoin..." required></textarea>
 
-.card:hover::after {
-  opacity: 1;
-}
+      <button type="submit" disabled={$loading} class="cta-main">
+        {#if $loading}
+          Envoi en cours...
+        {:else}
+          Demander mon devis gratuit
+        {/if}
+      </button>
 
-.card:hover span {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
+    </form>
+
+    <!-- CONTACT SECONDAIRE -->
+    <div class="contact-alt">
+      <a href={telHref} class="cta-secondary">📞 Appeler</a>
+    </div>
+
+  </div>
+
+</section>
