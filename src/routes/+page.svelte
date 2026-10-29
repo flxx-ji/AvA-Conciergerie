@@ -405,6 +405,28 @@
       use:handleEnhance
       aria-describedby="contact-desc"
     >
+
+<!--
+  HONEYPOT ANTI-SPAM
+
+  Ce champ est invisible pour les visiteurs.
+  Il ne doit jamais être rempli.
+
+  Certains robots remplissent automatiquement
+  tous les champs qu'ils trouvent.
+-->
+<div class="honeypot" aria-hidden="true">
+  <label for="website">Site internet</label>
+
+  <input
+    type="text"
+    id="website"
+    name="website"
+    tabindex="-1"
+    autocomplete="off"
+  />
+</div>
+
       <p id="contact-desc" class="visually-hidden">
         Formulaire pour demander un devis de conciergerie Airbnb
       </p>
@@ -617,4 +639,24 @@
       font-size: 22px;
     }
   }
+
+
+  /* ==============================
+     HONEYPOT ANTI-SPAM
+     ============================== */
+
+  /*
+    Le champ reste présent dans le HTML
+    pour les robots, mais il est invisible
+    et inaccessible à la souris.
+  */
+  .honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
 </style>
