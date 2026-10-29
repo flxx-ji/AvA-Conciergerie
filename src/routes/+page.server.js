@@ -43,6 +43,16 @@ export const actions = {
 
       console.log('RESEND RESULT:', result);
 
+      // Vérifie que Resend a réellement accepté l'email
+if (result.error) {
+  console.error('ERREUR RESEND:', result.error);
+
+  return fail(500, {
+    error: "Le message n'a pas pu être envoyé. Veuillez réessayer.",
+    values: { name, email, message }
+  });
+}
+
       return { success: true }; // ✅ IMPORTANT
 
     } catch (error) {

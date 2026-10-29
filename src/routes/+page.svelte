@@ -1,72 +1,123 @@
+
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
   import { contacts } from '$lib/config/app.js';
 
   // ==============================
-  // 🔥 STATE FEEDBACK (message success/error)
+  // RETOUR VISUEL DU FORMULAIRE
   // ==============================
+
+  // Mémorise le résultat de l'envoi :
+  // succès, erreur ou aucun message.
+  let feedback: 'success' | 'error' | null = null;
   let showMessage = false;
+
+  // Minuteur pour masquer le message après 15 secondes.
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  export let form;
+  // Affiche le message correspondant au résultat.
+  function displayFeedback(type: 'success' | 'error') {
+    if (timeoutId) clearTimeout(timeoutId);
 
-  // 👉 affichage message pendant 15s
-  $: if (form) {
-    if (form.success || form.error) {
-      showMessage = true;
+    feedback = type;
+    showMessage = true;
 
-      if (timeoutId) clearTimeout(timeoutId);
-
-      timeoutId = setTimeout(() => {
-        showMessage = false;
-      }, 15000);
-    }
+    // Le message disparaît automatiquement.
+    timeoutId = setTimeout(() => {
+      showMessage = false;
+    }, 15000);
   }
 
+  // Nettoyage du minuteur quand on quitte la page.
+  onDestroy(() => {
+    if (timeoutId) clearTimeout(timeoutId);
+  });
+
   // ==============================
-  // 🔄 LOADING STATE
+  // ÉTAT DU BOUTON PENDANT L'ENVOI
   // ==============================
   const loading = writable(false);
 
   // ==============================
-  // 📞 CONTACT DYNAMIQUE
+  // CONTACT DYNAMIQUE
   // ==============================
   const telHref = `tel:${contacts.phoneRaw}`;
-  const waHref = `https://wa.me/${contacts.whatsapp}?text=Bonjour,%20je%20souhaite%20un%20devis`;
+
+  const waHref =
+    `https://wa.me/${contacts.whatsapp}?text=Bonjour,%20je%20souhaite%20un%20devis`;
 
   // ==============================
-  // 🚀 FORM ENHANCE (SvelteKit)
+  // ENVOI SVELTEKIT SANS RECHARGEMENT
   // ==============================
-  function handleEnhance(formElement) {
+  function handleEnhance(formElement: HTMLFormElement) {
     return enhance(formElement, () => {
       loading.set(true);
 
-      return async ({ update }) => {
-        await update();
-        loading.set(false);
+      // Masque l'ancien message pendant un nouvel envoi.
+      showMessage = false;
+
+      return async ({ result, update }) => {
+        try {
+          // Met à jour les données de SvelteKit
+          // sans réinitialiser automatiquement le formulaire.
+          await update({ reset: false });
+
+          if (result.type === 'success') {
+            // Le serveur a accepté l'envoi.
+            displayFeedback('success');
+
+            // Vide les champs uniquement après un succès.
+            formElement.reset();
+
+          } else if (
+            result.type === 'failure' ||
+            result.type === 'error'
+          ) {
+            // En cas d'échec, les champs restent remplis.
+            displayFeedback('error');
+          }
+
+        } finally {
+          // Réactive toujours le bouton après la réponse.
+          loading.set(false);
+        }
       };
     });
   }
 </script>
 
-
 <svelte:head>
-  <title>Conciergerie Airbnb Caen | AvA Conciergerie</title>
+  <title>
+    Conciergerie Airbnb à Caen | Gestion & Revenus optimisés | AvA
+  </title>
 
-  <meta name="description" content="Conciergerie Airbnb à Caen et en Normandie. Gestion complète, optimisation des revenus, service personnalisé." />
+  <meta
+    name="description"
+    content="Conciergerie Airbnb à Caen et en Normandie. Gestion complète, optimisation des revenus, service personnalisé."
+  />
 
   <meta name="robots" content="index, follow" />
 
   <meta property="og:title" content="AvA Conciergerie Caen" />
-  <meta property="og:description" content="Gestion Airbnb complète à Caen et Normandie" />
+
+  <meta
+    property="og:description"
+    content="Gestion Airbnb complète à Caen et Normandie"
+  />
+
+  <meta property="og:image" content="/images/cotenormande.jpg" />
   <meta property="og:type" content="website" />
 </svelte:head>
 
 <!-- ================= HERO ================= -->
-<section class="hero" id="hero" aria-label="Présentation de la conciergerie">
-
-  <!-- overlay décoratif -->
+<section
+  class="hero"
+  id="hero"
+  aria-label="Présentation de la conciergerie"
+>
+  <!-- Overlay décoratif -->
   <div class="overlay" aria-hidden="true"></div>
 
   <div class="content">
@@ -83,20 +134,19 @@
       Conciergerie Airbnb à Caen et en Normandie
     </p>
 
-    <!-- ✔ preuves sociales -->
+    <!-- Preuves sociales -->
     <div class="badges">
       <span>✔ Réponse rapide</span>
       <span>✔ Service personnalisé</span>
       <span>✔ Intervention locale</span>
     </div>
 
-    <!-- 🔥 CTA principaux -->
+    <!-- CTA principaux -->
     <div class="buttons">
       <a href="#contact" class="cta-main-hero">
         Demander un devis
       </a>
 
-      <!-- ⚠️ sécurité + accessibilité -->
       <a
         href={waHref}
         target="_blank"
@@ -109,52 +159,64 @@
     </div>
   </div>
 
-  <!-- scroll décoratif -->
+  <!-- Indicateur de défilement -->
   <div class="scroll-indicator" aria-hidden="true">↓</div>
-
 </section>
 
 <!-- ================= PATCHWORK ================= -->
-<section class="patchwork" aria-label="Zones couvertes en Normandie">
-
-  <!-- texte décoratif -->
+<section
+  class="patchwork"
+  aria-label="Zones couvertes en Normandie"
+>
+  <!-- Texte décoratif -->
   <div class="background-text" aria-hidden="true">AVA</div>
 
-  <!-- 🔥 IMPORTANT : grid renommé -->
   <div class="patchwork-grid">
 
-    <!-- carte -->
     <div class="patch-card">
-      <img src="/images/montstmichel.jpg" alt="Vue du Mont-Saint-Michel en Normandie" />
+      <img
+        src="/images/montstmichel.jpg"
+        alt="Vue du Mont-Saint-Michel en Normandie"
+      />
       <span>Mont-Saint-Michel</span>
     </div>
 
     <div class="patch-card">
-      <img src="/images/deauvilleplage.jpg" alt="Plage de Deauville en Normandie" />
+      <img
+        src="/images/deauvilleplage.jpg"
+        alt="Plage de Deauville en Normandie"
+      />
       <span>Deauville</span>
     </div>
 
     <div class="patch-card">
-      <img src="/images/cotenormande.jpg" alt="Paysage de la côte normande" />
+      <img
+        src="/images/cotenormande.jpg"
+        alt="Paysage de la côte normande"
+      />
       <span>Côte Normande</span>
     </div>
 
     <div class="patch-card">
-      <img src="/images/maisonscolombages.jpg" alt="Maisons à colombages typiques de Normandie" />
+      <img
+        src="/images/maisonscolombages.jpg"
+        alt="Maisons à colombages typiques de Normandie"
+      />
       <span>Architecture Normande</span>
     </div>
 
   </div>
 </section>
 
-
-
 <!-- ================= SERVICES ================= -->
-<section class="services" id="services" aria-labelledby="services-title">
-
-  <!-- 🔥 HEADER (comme ABOUT) -->
+<section
+  class="services"
+  id="services"
+  aria-labelledby="services-title"
+>
   <div class="services-header">
     <h2 id="services-title">Nos services</h2>
+
     <p>
       Une gestion complète et professionnelle pour optimiser vos revenus Airbnb
       tout en vous libérant des contraintes du quotidien.
@@ -164,12 +226,13 @@
   <div class="services-container">
 
     <div class="services-image">
-      <img src="/images/apartments-living-room.jpg" alt="Appartement Airbnb moderne et lumineux" />
+      <img
+        src="/images/apartments-living-room.jpg"
+        alt="Appartement Airbnb moderne et lumineux"
+      />
     </div>
 
     <div class="services-content">
-
-      <!-- ⚠️ TON TITRE EXISTANT DEVENU SOUS-TITRE -->
       <h3>
         Confiez votre bien,<br />
         <span>nous nous occupons de tout</span>
@@ -179,9 +242,10 @@
         Une gestion complète pour maximiser vos revenus Airbnb.
       </p>
 
-      <!-- 🔹 blocs services -->
+      <!-- Gestion des voyageurs -->
       <div class="bloc">
         <h4>Gestion des voyageurs</h4>
+
         <ul>
           <li>Réponses rapides 7j/7</li>
           <li>Check-in / Check-out optimisés</li>
@@ -189,8 +253,10 @@
         </ul>
       </div>
 
+      <!-- Entretien du logement -->
       <div class="bloc">
         <h4>Entretien du logement</h4>
+
         <ul>
           <li>Ménage professionnel</li>
           <li>Interventions techniques</li>
@@ -198,8 +264,10 @@
         </ul>
       </div>
 
+      <!-- Optimisation des revenus -->
       <div class="bloc">
         <h4>Optimisation des revenus</h4>
+
         <ul>
           <li>Analyse du marché</li>
           <li>Tarification dynamique</li>
@@ -209,7 +277,9 @@
 
       <!-- CTA -->
       <div class="services-cta">
-        <a href="#contact" class="cta-main">Demander un devis</a>
+        <a href="#contact" class="cta-main">
+          Demander un devis
+        </a>
 
         <a
           href={waHref}
@@ -225,13 +295,15 @@
   </div>
 </section>
 
-
-
 <!-- ================= ABOUT ================= -->
-<section class="about" id="about" aria-labelledby="about-title">
-
+<section
+  class="about"
+  id="about"
+  aria-labelledby="about-title"
+>
   <div class="about-header">
     <h2 id="about-title">À propos</h2>
+
     <p>
       Une gestion complète et professionnelle de votre bien,
       pensée pour optimiser vos revenus et simplifier votre quotidien.
@@ -240,13 +312,15 @@
 
   <div class="about-content">
 
-    <!-- image -->
+    <!-- Image de présentation -->
     <div class="about-image">
-      <img src="/images/kashculture-clean-about.jpg"
-           alt="Chambre Airbnb lumineuse et soignée" />
+      <img
+        src="/images/kashculture-clean-about.jpg"
+        alt="Chambre Airbnb lumineuse et soignée"
+      />
     </div>
 
-    <!-- texte -->
+    <!-- Texte de présentation -->
     <div class="about-text">
       <h3>Notre mission</h3>
 
@@ -264,14 +338,12 @@
       <p class="highlight">
         Confier son bien, c’est avant tout une question de confiance.
       </p>
-
     </div>
 
   </div>
 
-  <!-- valeurs -->
+  <!-- Valeurs de la conciergerie -->
   <div class="values">
-
     <h3>Nos valeurs</h3>
 
     <div class="values-grid">
@@ -292,71 +364,257 @@
       </div>
 
     </div>
-
   </div>
-
 </section>
 
 <!-- ================= CONTACT ================= -->
-
-<section class="contact" id="contact" aria-labelledby="contact-title">
-
-  <!-- 🔥 HEADER (comme About) -->
+<section
+  class="contact"
+  id="contact"
+  aria-labelledby="contact-title"
+>
   <div class="contact-header">
     <h2 id="contact-title">Contact</h2>
+
     <p class="contact-sub">
       Parlons de votre bien et trouvons la meilleure solution pour maximiser vos revenus.
     </p>
   </div>
 
-  <!-- IMAGE -->
+  <!-- Image de contact -->
   <div class="contact-visual">
-    <img src="/images/pexels-achraf-borkadi-salon-34086242.jpg" alt="Salon moderne prêt pour location Airbnb" />
+    <img
+      src="/images/pexels-achraf-borkadi-salon-34086242.jpg"
+      alt="Salon moderne prêt pour location Airbnb"
+    />
   </div>
 
-  <!-- CONTENU -->
   <div class="contact-container">
 
-    <!-- 🔥 TITRE DEVENU SOUS-TITRE -->
     <h3>Parlons de votre bien</h3>
 
     <p class="contact-sub">
       Confiez-nous votre logement et maximisez vos revenus sans effort.
     </p>
 
-    <!-- FORM -->
-    <form method="POST" use:handleEnhance aria-describedby="contact-desc">
-
+    <!-- ============================== -->
+    <!-- FORMULAIRE DE CONTACT -->
+    <!-- ============================== -->
+    <form
+      method="POST"
+      use:handleEnhance
+      aria-describedby="contact-desc"
+    >
       <p id="contact-desc" class="visually-hidden">
         Formulaire pour demander un devis de conciergerie Airbnb
       </p>
 
       <div class="grid">
+        <input
+          name="name"
+          placeholder="Votre nom"
+          required
+          aria-label="Nom"
+        />
 
-        <input name="name" placeholder="Votre nom" required aria-label="Nom" />
-        <input type="email" name="email" placeholder="Votre email" required aria-label="Email" />
-
+        <input
+          type="email"
+          name="email"
+          placeholder="Votre email"
+          required
+          aria-label="Email"
+        />
       </div>
 
-      <textarea name="message" placeholder="Expliquez votre besoin..." required aria-label="Message"></textarea>
+      <textarea
+        name="message"
+        placeholder="Expliquez votre besoin..."
+        required
+        aria-label="Message"
+      ></textarea>
 
-      <button type="submit" disabled={$loading} class="cta-main" aria-busy={$loading}>
+      <!-- Bouton désactivé pendant l'envoi -->
+      <button
+        type="submit"
+        disabled={$loading}
+        class="cta-main"
+        aria-busy={$loading}
+      >
         {#if $loading}
           Envoi en cours...
         {:else}
           Demander mon devis gratuit
         {/if}
       </button>
-
     </form>
 
-    <!-- CONTACT SECONDAIRE -->
+    <!-- ============================== -->
+    <!-- CONFIRMATION ANIMÉE -->
+    <!-- ============================== -->
+
+    {#if showMessage && feedback === 'success'}
+      <!-- Message affiché après un envoi réussi -->
+      <div
+        class="form-feedback form-feedback-success"
+        role="status"
+        aria-live="polite"
+      >
+        <span class="feedback-icon" aria-hidden="true">✓</span>
+
+        <div>
+          <h4>Votre demande a bien été envoyée !</h4>
+
+          <p>
+            Merci pour votre confiance. L'équipe AvA Conciergerie
+            reviendra vers vous dans les meilleurs délais.
+          </p>
+        </div>
+      </div>
+
+    {:else if showMessage && feedback === 'error'}
+      <!-- Message affiché si l'envoi échoue -->
+      <div
+        class="form-feedback form-feedback-error"
+        role="alert"
+      >
+        <span class="feedback-icon" aria-hidden="true">!</span>
+
+        <div>
+          <h4>Votre message n'a pas pu être envoyé.</h4>
+
+          <p>
+            Veuillez réessayer dans quelques instants
+            ou nous contacter par téléphone.
+          </p>
+        </div>
+      </div>
+    {/if}
+
+    <!-- Contact secondaire par téléphone -->
     <div class="contact-alt">
-      <a href={telHref} class="cta-secondary" aria-label="Appeler la conciergerie">
+      <a
+        href={telHref}
+        class="cta-secondary"
+        aria-label="Appeler la conciergerie"
+      >
         📞 Appeler
       </a>
     </div>
 
   </div>
-
 </section>
+
+<style>
+  /* ==============================
+     CONFIRMATION FORMULAIRE AVA
+     Styles isolés : aucune autre section touchée
+     ============================== */
+
+  .form-feedback {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px;
+    margin-top: 24px;
+    border-radius: 16px;
+    text-align: left;
+
+    /* Apparition douce */
+    animation: feedback-appear 0.5s ease-out both;
+  }
+
+  /* Couleurs du message de succès */
+  .form-feedback-success {
+    background: #edf8f0;
+    border: 1px solid #b8e4c5;
+    color: #225c38;
+  }
+
+  /* Couleurs du message d'erreur */
+  .form-feedback-error {
+    background: #fff0ee;
+    border: 1px solid #f0c5be;
+    color: #8c3028;
+  }
+
+  /* Coche animée */
+  .feedback-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #25a660;
+    color: white;
+    font-size: 26px;
+    font-weight: 700;
+    animation: feedback-pop 0.5s ease-out both;
+  }
+
+  /* Icône rouge en cas d'erreur */
+  .form-feedback-error .feedback-icon {
+    background: #c94c40;
+  }
+
+  .form-feedback h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+
+  .form-feedback p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Apparition du message */
+  @keyframes feedback-appear {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation de la coche */
+  @keyframes feedback-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Respect des préférences d'accessibilité */
+  @media (prefers-reduced-motion: reduce) {
+    .form-feedback,
+    .feedback-icon {
+      animation: none;
+    }
+  }
+
+  /* Adaptation mobile */
+  @media (max-width: 480px) {
+    .form-feedback {
+      padding: 18px;
+      gap: 12px;
+    }
+
+    .feedback-icon {
+      width: 38px;
+      height: 38px;
+      font-size: 22px;
+    }
+  }
+</style>
